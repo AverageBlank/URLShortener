@@ -36,7 +36,7 @@ from os import environ
 
 # ? Random, String --> Last resort fail safe.
 from random import choice as randchoice
-from string import ascii_letters, digits
+from string import ascii_letters, digits, punctuation
 
 # endregion
 #! --------------------------------------------------
@@ -107,7 +107,7 @@ def signUp():
         else:
             return render_template("signup.html", userID="Your User ID")
     else:
-        return redirect("/generateurl")
+        return redirect("/stats")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -118,7 +118,7 @@ def logIn():
             userID = request.form["userid"]
             userPresent = usersColl.find_one({"UserID": userID})
             if userPresent:
-                output = redirect("/generateurl")
+                output = redirect("/stats")
                 resp = make_response(output)
                 resp.set_cookie("userID", userID)
                 return resp
@@ -127,7 +127,7 @@ def logIn():
         else:
             return render_template("login.html")
     else:
-        return redirect("/generateurl")
+        return redirect("/stats")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -144,23 +144,27 @@ def generateurl():
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
         if request.method == "POST" and hasUsedApp == False:
             url = request.form["long_url"]
+            if " " in url:
+                print("INVALID URL")  # Aaloke add error - URL cannot have spaces in it.
             customURL = request.form["custom_url"]
             now = datetime.now()
             id = URLsColl.count_documents({}) + 1
             time = now.strftime("%d/%m/%Y %H:%M:%S")
             userID = request.cookies.get("userID")
             if url == "":
-                hasUsedApp = True
                 return render_template("generateurl.html", error_url="errorTrue")
             elif customURL != "":
                 existingURLs = []
                 for document in URLsColl.find({}, {"ShortenedURL": 1}):
                     existingURLs.append(document["ShortenedURL"])
                 if customURL in existingURLs:
-                    hasUsedApp = True
                     return render_template(
-                        "generateurl.html", error_custom_url="errorTrue"
+                        "generateurl.html", old_url=url, error_custom_url="errorTrue"
                     )
+                elif " " in customURL or any(char in punctuation for char in customURL):
+                    print(
+                        "CustomURL has space/punctuation"
+                    )  # Aaloke same here - Custom URL cannot have spaces/punctuation in it.
                 else:
                     URLsColl.insert_one(
                         {
@@ -178,7 +182,7 @@ def generateurl():
                     old_url=url,
                     new_url=domain + customURL,
                     custom_url=customURL,
-                )
+                )  # Aaloke - add some line to grey out all boxes, and remove shortenURL button.
             else:
                 hashid = Hashids(min_length=5, salt=userID)
                 newURL = hashid.encode(id)
@@ -189,11 +193,11 @@ def generateurl():
                     salt = ""
                     for _ in range(10):
                         salt += randchoice(ascii_letters + digits)
-                        hashid = Hashids(
-                            min_length=10,
-                            salt=salt,
-                        )
-                        newURL = hashid.encode(id)
+                    hashid = Hashids(
+                        min_length=7,
+                        salt=salt,
+                    )
+                    newURL = hashid.encode(id)
                 URLsColl.insert_one(
                     {
                         "ID": id,
@@ -209,14 +213,15 @@ def generateurl():
                     "generateurl.html",
                     old_url=url,
                     new_url=domain + newURL,
-                )
+                    custom_url=" ",
+                )  # Aaloke - add some line to grey out all boxes, and remove shortenURL button.
         elif request.method == "POST" and hasUsedApp == True:
             return redirect(url_for("generateurl"))
         else:
             hasUsedApp = False
             return render_template("generateurl.html", clearForms="True")
     else:
-        return redirect("/login")
+        return redirect("/")
 
 
 @app.route("/stats", methods=["GET", "POST"])
