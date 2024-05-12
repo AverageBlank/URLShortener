@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/static/favicon.svg" />
+    <title>Sign Up - trim.lol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+        * {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .buttoninvis {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="h-full w-full bg-zinc-950">
+    <div
+        class="flex justify-center items-center gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
+        <img src="static/logo.svg" class="w-56 pb-3" />
+        <div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+            <div class="flex justify-between items-center w-full">
+                <h1 class="text-2xl font-bold">Statistics</h1>
+                <div class="flex gap-3 items-center">
+                    <form method="post" action>
+                        <button type="submit" value="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </form>
+                    <a href="/generateurl"
+                        class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Go
+                        to URL Shortener</a>
+                </div>
+            </div>
+            <hr class="w-full border-t-2 opacity-25 border-zinc-400">
+            <div class="overflow-x-visible">
+                <table class="w-full text-sm text-left rtl:text-right text-zinc-400">
+                    <thead class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Original URL
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Shortened URL
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date & Time Created
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Clicks
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for url in urls %}
+                        <tr class=" odd:bg-zinc-900 even:bg-zinc-800 border-bborder-zinc-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
+                                {{url['ID']}}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{url['OriginalURL']}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{url['ShortenedURL']}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{url['Timestamp']}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{url['Clicks']}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function sleep(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+        let text = document.getElementById("userID").innerHTML;
+        let button = document.getElementById("copyButton").innerHTML;
+        const copyContent = async () => {
+            try {
+                await navigator.clipboard.writeText(text);
+                console.log("Content copied to clipboard");
+
+                copyButton.innerHTML =
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>';
+                await sleep(1000);
+                copyButton.innerHTML =
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256"> <path d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"></path></svg>';
+            } catch (err) {
+                console.error("Failed to copy: ", err);
+            }
+        };
+    </script>
+</body>
+
+</html>

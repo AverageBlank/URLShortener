@@ -1,0 +1,5 @@
+pymongo
+flask
+python-dotenv
+hashids
+gunicorn
