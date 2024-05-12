@@ -226,7 +226,6 @@ def generateurl():
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
-
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
         userID = request.cookies.get("userID")
         urls = list(URLsColl.find({"UserID": userID}, {"_id": 0}))
