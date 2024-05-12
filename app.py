@@ -146,6 +146,12 @@ def generateurl():
             url = request.form["long_url"]
             if " " in url:
                 print("INVALID URL")  # Aaloke add error - URL cannot have spaces in it.
+                # return something
+            elif "trim.lol" in url or "bit.ly" in url or "tinyurl.com" in url:
+                print(
+                    "INVALID URL"
+                )  # Aaloke add another error - URL cannot be shortened.
+                # return something
             customURL = request.form["custom_url"]
             now = datetime.now()
             id = URLsColl.count_documents({}) + 1
@@ -161,10 +167,16 @@ def generateurl():
                     return render_template(
                         "generateurl.html", old_url=url, error_custom_url="errorTrue"
                     )
-                elif " " in customURL or any(char in punctuation for char in customURL):
+                elif (
+                    " " in customURL
+                    or any(char in punctuation for char in customURL)
+                    or "www" in customURL
+                    or "http" in customURL
+                ):
                     print(
                         "CustomURL has space/punctuation"
-                    )  # Aaloke same here - Custom URL cannot have spaces/punctuation in it.
+                    )  # Aaloke same here - Invalid custom URL.
+                    # return something
                 else:
                     URLsColl.insert_one(
                         {

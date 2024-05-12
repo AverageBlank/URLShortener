@@ -59,7 +59,6 @@
             <thead
               class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400">
               <tr>
-                <th scope="col" class="px-6 py-3">ID</th>
                 <th scope="col" class="px-6 py-3">Original URL</th>
                 <th scope="col" class="px-6 py-3">Shortened URL</th>
                 <th scope="col" class="px-6 py-3">Date & Time Created</th>
@@ -70,13 +69,10 @@
               {% for url in urls %}
               <tr
                 class="odd:bg-zinc-900 even:bg-zinc-800 border-bborder-zinc-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
-                  {{url['ID']}}
-                </th>
                 <td class="px-6 py-4">{{url['OriginalURL']}}</td>
-                <td class="px-6 py-4">{{url['ShortenedURL']}}</td>
+                <td class="px-6 py-4">
+                  https://trim.lol/{{url['ShortenedURL']}}
+                </td>
                 <td class="px-6 py-4">{{url['Timestamp']}}</td>
                 <td class="px-6 py-4">{{url['Clicks']}}</td>
               </tr>
