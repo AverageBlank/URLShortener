@@ -1,5 +1,6 @@
 # TO-DO
 
+- Work on the signup page removing the the user id before and then adding it
 - Work on the stats page(add copy button and exceed char limit to ...)
 - Make it responsive
 - Make github look pretty
