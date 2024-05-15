@@ -1,6 +1,6 @@
 # TO-DO
 
-- Work on the stats page
+- Work on the stats page(add copy button and exceed char limit to ...)
 - Make it responsive
 - Make github look pretty
 

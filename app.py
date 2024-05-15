@@ -17,7 +17,14 @@
 #! --------------------------------------------------
 # region import
 # ? Flask --> For the backend of HTML
-from flask import Flask, render_template, make_response, request, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    make_response,
+    request,
+    redirect,
+    url_for,
+)
 
 # ? MongoDB --> For storing URL databases
 from pymongo import MongoClient
@@ -90,13 +97,21 @@ def signUp():
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) == None:
         if request.method == "POST":
             load_dotenv()
-            hashids = Hashids(
-                min_length=10,
-                salt=environ.get("KEY"),
-                alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-            )
             id = usersColl.count_documents({}) + 1
-            userID = hashids.encode(id)
+            users = usersColl.distinct("UserID")
+            while True:
+                key = ""
+                for _ in range(10):
+                    key += randchoice(ascii_letters + digits)
+                hashids = Hashids(
+                    min_length=10,
+                    salt=key,
+                    alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                )
+                userID = hashids.encode(id)
+                if userID in users:
+                    continue
+                break
             usersColl.insert_one({"ID": id, "UserID": userID})
             output = render_template(
                 "signup.html", userID=userID, buttonVisible="buttoninvis"
@@ -145,13 +160,17 @@ def generateurl():
         if request.method == "POST" and hasUsedApp == False:
             url = request.form["long_url"]
             if " " in url:
-                print("INVALID URL")  # Aaloke add error - URL cannot have spaces in it.
-                # return something
+                return render_template(
+                    "generateurl.html",
+                    error_url="errorTrue",
+                    error_url_statement="Invalid URL. Please try again.",
+                )
             elif "trim.lol" in url or "bit.ly" in url or "tinyurl.com" in url:
-                print(
-                    "INVALID URL"
-                )  # Aaloke add another error - URL cannot be shortened.
-                # return something
+                return render_template(
+                    "generateurl.html",
+                    error_url="errorTrue",
+                    error_url_statement="URL cannot be shortened. Please try again.",
+                )
             customURL = request.form["custom_url"]
             now = datetime.now()
             id = URLsColl.count_documents({}) + 1
@@ -165,7 +184,10 @@ def generateurl():
                     existingURLs.append(document["ShortenedURL"])
                 if customURL in existingURLs:
                     return render_template(
-                        "generateurl.html", old_url=url, error_custom_url="errorTrue"
+                        "generateurl.html",
+                        old_url=url,
+                        error_custom_url="errorTrue",
+                        error_custom_url_statement="Custom URL already claimed. Please try again.",
                     )
                 elif (
                     " " in customURL
@@ -173,10 +195,12 @@ def generateurl():
                     or "www" in customURL
                     or "http" in customURL
                 ):
-                    print(
-                        "CustomURL has space/punctuation"
-                    )  # Aaloke same here - Invalid custom URL.
-                    # return something
+                    return render_template(
+                        "generateurl.html",
+                        old_url=url,
+                        error_custom_url="errorTrue",
+                        error_custom_url_statement="Invalid custom URL. Please try again.",
+                    )
                 else:
                     URLsColl.insert_one(
                         {
@@ -189,12 +213,13 @@ def generateurl():
                         }
                     )
                     hasUsedApp = True
-                return render_template(
-                    "generateurl.html",
-                    old_url=url,
-                    new_url=domain + customURL,
-                    custom_url=customURL,
-                )  # Aaloke - add some line to grey out all boxes, and remove shortenURL button.
+                    return render_template(
+                        "generateurl.html",
+                        old_url=url,
+                        new_url=domain + customURL,
+                        custom_url=customURL,
+                        completed="True",
+                    )
             else:
                 hashid = Hashids(min_length=5, salt=userID)
                 newURL = hashid.encode(id)
@@ -226,14 +251,19 @@ def generateurl():
                     old_url=url,
                     new_url=domain + newURL,
                     custom_url=" ",
-                )  # Aaloke - add some line to grey out all boxes, and remove shortenURL button.
+                    completed="True",
+                )
         elif request.method == "POST" and hasUsedApp == True:
+            hasUsedApp = False
             return redirect(url_for("generateurl"))
         else:
             hasUsedApp = False
             return render_template("generateurl.html", clearForms="True")
     else:
-        return redirect("/")
+        response = make_response(redirect("/"))
+        if request.cookies.get("UserID") != None:
+            response.set_cookie("UserID", "", expires=0)
+        return response
 
 
 @app.route("/stats", methods=["GET", "POST"])
@@ -245,7 +275,10 @@ def stats():
             return render_template("stats.html", urls=urls)
         return render_template("stats.html", urls=urls)
     else:
-        return redirect("/")
+        response = make_response(redirect("/"))
+        if request.cookies.get("UserID") != None:
+            response.set_cookie("UserID", "", expires=0)
+        return response
 
 
 @app.route("/<id>")
@@ -262,6 +295,9 @@ def url_redirection(id):
 @app.route("/404")
 def error_404():
     return render_template("404.html")
+
+
+app.run(debug=True)
 
 
 # endregion

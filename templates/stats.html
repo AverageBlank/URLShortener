@@ -29,7 +29,7 @@
       class="flex justify-center items-center gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
       <img src="static/logo.svg" class="w-56 pb-3" />
       <div
-        class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+        class="p-20 w-3/4 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
         <div class="flex justify-between items-center w-full">
           <h1 class="text-2xl font-bold">Statistics</h1>
           <div class="flex gap-3 items-center">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <hr class="w-full border-t-2 opacity-25 border-zinc-400" />
-        <div class="overflow-x-visible">
+        <div class="overflow-y-auto overflow-x-auto w-full h-96">
           <table class="w-full text-sm text-left rtl:text-right text-zinc-400">
             <thead
               class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400">
@@ -70,7 +70,7 @@
               <tr
                 class="odd:bg-zinc-900 even:bg-zinc-800 border-bborder-zinc-700">
                 <td class="px-6 py-4">{{url['OriginalURL']}}</td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 text-ellipsis">
                   https://trim.lol/{{url['ShortenedURL']}}
                 </td>
                 <td class="px-6 py-4">{{url['Timestamp']}}</td>
