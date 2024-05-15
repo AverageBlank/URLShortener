@@ -150,7 +150,10 @@ def home():
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
         return redirect("/stats")
     else:
-        return render_template("index.html")
+        response = make_response(render_template("index.html"))
+        if request.cookies.get("UserID") != None:
+            response.set_cookie("UserID", "", expires=0)
+        return response
 
 
 @app.route("/generateurl", methods=["GET", "POST"])
@@ -295,9 +298,6 @@ def url_redirection(id):
 @app.route("/404")
 def error_404():
     return render_template("404.html")
-
-
-app.run(debug=True)
 
 
 # endregion
