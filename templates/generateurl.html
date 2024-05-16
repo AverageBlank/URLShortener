@@ -15,12 +15,12 @@
     class="flex items-center flex-col"
     id="generateURLForm">
     <div class="mb-3">
-      <label>Paste your long url here</label><br />
+      <label>Original URL</label><br />
       <input
         type="text"
         name="long_url"
         id="url"
-        placeholder="Paste your big URL"
+        placeholder="Enter URL to be shortened"
         class="rounded-lg p-2 bg-zinc-800"
         size="80"
         value="{{old_url}}" />
@@ -56,7 +56,7 @@
         type="url"
         id="output"
         disabled
-        placeholder="Returns your short url"
+        placeholder="Returns your new shortened URL"
         class="bg-transparent cursor-not-allowed"
         size="50"
         value="{{new_url}}" />
