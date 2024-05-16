@@ -75,25 +75,10 @@ Make sure you have Python and MongoDB installed on your system.
 
 ## Libraries Used
 - **Flask**: A lightweight WSGI web application framework in Python.
-    ```bash
-    pip install flask
-    ```
 - **PyMongo**: A Python distribution containing tools for working with MongoDB.
-    ```bash
-    pip install pymongo
-    ```
 - **Datetime**: A module to work with dates and times.
-    ```bash
-    pip install DateTime
-    ```
 - **Hashids**: A small library to generate YouTube-like hashes from one or many numbers.
-    ```bash
-    pip install hashids
-    ```
 - **Python-dotenv**: Reads key-value pairs from a `.env` file and can set them as environment variables.
-    ```bash
-    pip install python-dotenv
-    ```
-- **OS**: A standard library in Python to interact with the operating system. (Built-in, no need to install)
-- **Random**: Implements pseudo-random number generators for various distributions. (Built-in, no need to install)
-- **String**: A built-in Python library to perform common string operations. (Built-in, no need to install)
+- **OS**: A standard library in Python to interact with the operating system.
+- **Random**: Implements pseudo-random number generators for various distributions.
+- **String**: A built-in Python library to perform common string operations.
