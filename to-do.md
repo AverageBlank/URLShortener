@@ -1,10 +1,9 @@
 # TO-DO
 - Make it responsive
-- Make github look pretty
+- Make live preview
 
 # Finished
-
-- implement generate userid
+- Implement generate userid
 - Implement user table and userid functionality
 - Implement the custom url method
 - Implement the shorten url method for random using hashids(aka the id in the database)
@@ -14,3 +13,4 @@
 - Think of a name
 - Work on the sign up page removing the the user id before and then adding it
 - Work on the stats page(add copy button and exceed char limit to ...)
+- Make github look pretty
