@@ -1,7 +1,7 @@
 # URL Shortener
 
 ## About the Project
-The URL Shortener is a user-friendly solution designed for individuals and businesses. It simplifies the task of managing and sharing long web addresses, allowing users to efficiently handle their online links. With its streamlined approach, this tool enables users to concentrate on their core activities while seamlessly managing their URLs. Discover the simplicity and practicality of our URL Shortener, where users find a reliable ally in online link management.
+URLShortener is a robust and user-friendly solution designed to simplify the management and sharing of long web addresses. With its intuitive interface and efficient backend powered by Flask and MongoDB, this project offers a seamless experience for shortening URLs. Developed with a focus on practicality and ease of use, URLShortener provides users with a reliable ally in managing their online links effortlessly.
 
 ## Purpose
 The purpose of this project is to learn how to deal with databases, web development frameworks, and various libraries used in creating a URL shortener. This project provides hands-on experience with technologies like MongoDB, Flask, and Tailwind CSS.
