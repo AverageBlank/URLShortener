@@ -161,26 +161,47 @@ def generateurl():
     global hasUsedApp
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
         if request.method == "POST" and hasUsedApp == False:
+            customURL = ""
             url = request.form["long_url"]
-            if " " in url:
-                return render_template(
-                    "generateurl.html",
-                    error_url="errorTrue",
-                    error_url_statement="Invalid URL. Please try again.",
-                )
-            elif "trim.lol" in url or "bit.ly" in url or "tinyurl.com" in url:
-                return render_template(
-                    "generateurl.html",
-                    error_url="errorTrue",
-                    error_url_statement="URL cannot be shortened. Please try again.",
-                )
             customURL = request.form["custom_url"]
+            if " " in url:
+                if customURL == "":
+                    return render_template(
+                        "generateurl.html",
+                        error_url="errorTrue",
+                        error_url_statement="Invalid URL. Please try again.",
+                    )
+                else:
+                    return render_template(
+                        "generateurl.html",
+                        error_url="errorTrue",
+                        custom_url=customURL,
+                        error_url_statement="Invalid URL. Please try again.",
+                    )
+            elif "trim.lol" in url or "bit.ly" in url or "tinyurl.com" in url:
+                if customURL == "":
+                    return render_template(
+                        "generateurl.html",
+                        error_url="errorTrue",
+                        error_url_statement="URL cannot be shortened. Please try again.",
+                    )
+                else:
+                    return render_template(
+                        "generateurl.html",
+                        error_url="errorTrue",
+                        custom_url=customURL,
+                        error_url_statement="URL cannot be shortened. Please try again.",
+                    )
             now = datetime.now()
             id = URLsColl.count_documents({}) + 1
             time = now.strftime("%d/%m/%Y %H:%M:%S")
             userID = request.cookies.get("userID")
             if url == "":
-                return render_template("generateurl.html", error_url="errorTrue")
+                return render_template(
+                    "generateurl.html",
+                    error_url="errorTrue",
+                    error_url_statement="Please enter a URL and try again.",
+                )
             elif customURL != "":
                 existingURLs = []
                 for document in URLsColl.find({}, {"ShortenedURL": 1}):

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/static/favicon.svg" />
@@ -9,29 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet" />
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
-        * {
-            font-family: "Space Grotesk", sans-serif;
-        }
+      * {
+        font-family: "Space Grotesk", sans-serif;
+      }
 
-        .errorTrue {
-            display: block !important;
-        }
+      .errorTrue {
+        display: block !important;
+      }
     </style>
-</head>
+  </head>
 
-<body class="h-full w-full bg-zinc-950">
+  <body class="h-full w-full bg-zinc-950">
     <div
-        class="flex justify-center items-center gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
-        <img src="static/logo.svg" class="w-56 pb-3" />
-        {% block content %} {% endblock %}
+      class="flex justify-center items-center gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
+      <a href="/"><img src="static/logo.svg" class="w-56 pb-3" /></a>
+      {% block content %} {% endblock %}
     </div>
     {% block script %} {% endblock %}
-</body>
+  </body>
 
-<body>
-
-</body>
+  <body></body>
+</html>
