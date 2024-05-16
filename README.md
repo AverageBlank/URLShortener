@@ -7,9 +7,7 @@ URLShortener is a robust and user-friendly solution designed to simplify the man
 The purpose of this project is to learn how to deal with databases, web development frameworks, and various libraries used in creating a URL shortener. This project provides hands-on experience with technologies like MongoDB, Flask, and Tailwind CSS.
 
 ## Live Preview
-<video controls>
-  <source src="preview/URLShortener.mp4" type="video/mp4">
-</video>
+https://github.com/AverageBlank/URLShortener/assets/112507212/f2311a4a-4b83-4720-858d-c6ebfd8f1b6b
 
 This website is currently hosted at [trim.lol](https://trim.lol).
 
