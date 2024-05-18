@@ -1,8 +1,8 @@
 {%extends 'base.html' %}
 
 {%block content %}
-<div class="p-20 w-3/4 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
-  <div class="flex justify-between items-center w-full">
+<div class="p-5 md:p-20 w-5/6 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+  <div class="flex flex-col justify-center items-center w-full md:flex-row md:justify-between">
     <h1 class="text-2xl font-bold">{%block title%}Statistics{%endblock%}</h1>
     <div class="flex gap-3 items-center">
       <form method="post" action class="flex items-center justify-center">
@@ -15,11 +15,12 @@
         </button>
       </form>
       <a href="/generateurl"
-        class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Generate a new URL</a>
+        class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Generate
+        a new URL</a>
     </div>
   </div>
   <hr class="w-full border-t-2 opacity-25 border-zinc-400" />
-  <div class="w-full h-96">
+  <div class="w-full h-80 overflow-x-auto overflow-y-auto">
     <table class="w-full text-sm text-left rtl:text-right text-zinc-400">
       <thead class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400">
         <tr>
@@ -35,7 +36,8 @@
           <td class="px-6 py-4 truncate max-w-96">{{url['OriginalURL']}}</td>
           <td class="px-6 py-4 flex items-center gap-2">
             <span class="shortened-url block max-w-80 truncate">https://trim.lol/{{url['ShortenedURL']}}</span>
-            <button class="copy-button text-white bg-blue-700 flex items-center gap-2 hover:bg-blue-800 p-2 rounded-lg" onclick="copyContent(this)" data-url="https://trim.lol/{{url['ShortenedURL']}}">Copy
+            <button class="copy-button text-white bg-blue-700 flex items-center gap-2 hover:bg-blue-800 p-2 rounded-lg"
+              onclick="copyContent(this)" data-url="https://trim.lol/{{url['ShortenedURL']}}">Copy
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="fill-white" viewBox="0 0 256 256">
                 <path
                   d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z">
@@ -51,7 +53,11 @@
     </table>
   </div>
 </div>
-</div>
+<p class="text-blue-200"><a href="/logout">Logout | </a><a href="https://github.com/averageblank/urlshortener"
+    class="underline" target="_blank">Github</a>. Developed By
+  <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
+    href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+</p>
 {%endblock%}
 {%block script %}
 <script>

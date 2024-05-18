@@ -151,8 +151,8 @@ def home():
         return redirect("/stats")
     else:
         response = make_response(render_template("index.html"))
-        if request.cookies.get("UserID") != None:
-            response.set_cookie("UserID", "", expires=0)
+        if request.cookies.get("userID") != None:
+            response.set_cookie("userID", "", expires=0)
         return response
 
 
@@ -285,8 +285,8 @@ def generateurl():
             return render_template("generateurl.html", clearForms="True")
     else:
         response = make_response(redirect("/"))
-        if request.cookies.get("UserID") != None:
-            response.set_cookie("UserID", "", expires=0)
+        if request.cookies.get("userID") != None:
+            response.set_cookie("userID", "", expires=0)
         return response
 
 
@@ -300,8 +300,8 @@ def stats():
         return render_template("stats.html", urls=urls)
     else:
         response = make_response(redirect("/"))
-        if request.cookies.get("UserID") != None:
-            response.set_cookie("UserID", "", expires=0)
+        if request.cookies.get("userID") != None:
+            response.set_cookie("userID", "", expires=0)
         return response
 
 
@@ -314,6 +314,13 @@ def url_redirection(id):
         return redirect(url)
     else:
         return redirect("/404")
+
+
+@app.route("/logout")
+def logout():
+    response = make_response(redirect("/"))
+    response.set_cookie("userID", "", expires=0, path="/", max_age=0)
+    return response
 
 
 @app.route("/404")

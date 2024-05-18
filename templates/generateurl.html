@@ -2,82 +2,53 @@
 <div class="p-16 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
   <div class="flex justify-between items-center w-full">
     <h1 class="text-2xl font-bold">{%block title%}Generate URL{%endblock%}</h1>
-    <a
-      href="/stats"
-      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8"
-      >Check Statistics</a
-    >
+    <a href="/stats"
+      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Check
+      Statistics</a>
   </div>
   <hr class="w-full border-t-2 opacity-25 mb-3 border-zinc-400" />
-  <form
-    method="post"
-    action
-    class="flex items-center flex-col"
-    id="generateURLForm">
+  <form method="post" action class="flex items-center flex-col" id="generateURLForm">
     <div class="mb-3">
       <label>Original URL</label><br />
-      <input
-        type="text"
-        name="long_url"
-        id="url"
-        placeholder="Enter URL to be shortened"
-        class="rounded-lg p-2 bg-zinc-800"
-        size="80"
-        value="{{old_url}}" />
+      <input type="text" name="long_url" id="url" placeholder="Enter URL to be shortened"
+        class="rounded-lg p-2 bg-zinc-800" size="80" value="{{old_url}}" />
       <p class="text-sm text-red-500 hidden {{error_url}}">
         {{error_url_statement}}
       </p>
     </div>
     <div class="mb-3">
       <label>Custom URL</label>
-      <input
-        name="custom_url"
-        type="text"
-        id="custom_url"
-        class="rounded-lg p-2 w-full bg-zinc-800"
-        size="50"
-        placeholder="Enter Custom URL (optional)"
-        value="{{custom_url}}" />
+      <input name="custom_url" type="text" id="custom_url" class="rounded-lg p-2 w-full bg-zinc-800" size="50"
+        placeholder="Enter Custom URL (optional)" value="{{custom_url}}" />
       <p class="text-sm text-red-500 hidden {{error_custom_url}}">
         {{error_custom_url_statement}}
       </p>
     </div>
-    <button
-      type="submit"
-      value="submit"
-      id="shorten"
+    <button type="submit" value="submit" id="shorten"
       class="text-center bg-blue-700 hover:bg-blue-800 cursor-pointer mb-5 w-1/2 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">
       Shorten URL 🔗
     </button>
     <hr class="border-top border-zinc-700 w-full p-2" />
     <h1 class="text-xl mb-3 font-bold">Copy your custom URL</h1>
     <div class="mb-3 rounded-lg p-2 pl-4 bg-zinc-800 flex">
-      <input
-        type="url"
-        id="output"
-        disabled
-        placeholder="Returns your new shortened URL"
-        class="bg-transparent cursor-not-allowed"
-        size="50"
-        value="{{new_url}}" />
-      <button
-        type="button"
-        onclick="return copyContent()"
-        id="copyButton"
+      <input type="url" id="output" disabled placeholder="Returns your new shortened URL"
+        class="bg-transparent cursor-not-allowed" size="50" value="{{new_url}}" />
+      <button type="button" onclick="return copyContent()" id="copyButton"
         class="hover:bg-zinc-700 p-2 transition ease-in-out duration-200 rounded-lg">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          class="fill-white"
-          viewBox="0 0 256 256">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white" viewBox="0 0 256 256">
           <path
-            d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"></path>
+            d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z">
+          </path>
         </svg>
       </button>
     </div>
   </form>
 </div>
+<p class="text-blue-200"><a href="/logout">Logout | </a><a href="https://github.com/averageblank/urlshortener"
+    class="underline" target="_blank">Github</a>. Developed By
+  <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
+    href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+</p>
 {%endblock%} {%block script %}
 <script>
   // sleep function
