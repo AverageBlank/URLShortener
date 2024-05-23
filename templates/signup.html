@@ -1,5 +1,6 @@
 {%extends 'base.html' %} {%block content %}
 <div class="p-10 md:p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+  <p class="hidden">{%block title%}Sign Up{%endblock%}</p>
   <h1 class="text-3xl font-bold text-center">Generate New UserID</h1>
   <div class="flex gap-1 md:gap-2 md:mb-2 items-center" id="userIDdiv">
     <h1 class="text-2xl text-center" id="userID">{{userID}}</h1>
@@ -23,7 +24,7 @@
     Please copy your UserID! This will be used whenever you try to login<br />
     Once you lose it, you cannot retrieve it!
   </p>
-  <a href="/stats" class="underline text-zinc-400">Proceed to Main Page →</a>
+  <a href="/stats" class="underline text-zinc-400" id="Proceedtomainpage">Proceed to Main Page →</a>
 </div>
 <p class="text-blue-200"><a href="https://github.com/averageblank/urlshortener" class="underline"
     target="_blank">Github</a>. Developed By
@@ -67,12 +68,15 @@
     let userIDtext = document.getElementById("userID");
     let userIDdiv = document.getElementById("userIDdiv");
     let userIDPara = document.getElementById("userIdPara");
+    let Proceedtomainpage = document.getElementById("Proceedtomainpage");
     if (userIDtext.innerHTML === "Your User ID") {
       userIDdiv.style.display = "none";
       userIDPara.style.display = "none";
+      Proceedtomainpage.style.display = "none";
     } else {
       userIDtext.style.display = "flex";
       userIDPara.style.display = "block";
+      Proceedtomainpage.style.display = "block";
     }
   });
 </script>
