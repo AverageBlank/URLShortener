@@ -25,13 +25,11 @@
 
 <body class="h-full w-full bg-zinc-950">
   <div
-    class="flex justify-center items-center gap-3 md:gap-7 2xl:gap-10 flex-col w-screen h-screen bg-[url('static/bg-gradient.png')] bg-top text-white">
+    class="flex justify-center items-center gap-3 md:gap-7 2xl:gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
     <a href="/"><img src="static/logo.svg" class="w-56 pb-3" /></a>
     {% block content %} {% endblock %}
   </div>
   {% block script %} {% endblock %}
 </body>
-
-<body></body>
 
 </html>

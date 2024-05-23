@@ -30,7 +30,7 @@ from flask import (
 from pymongo import MongoClient
 
 # ? DateTime --> For getting current date
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # ? HashIDS --> For hashing URLs
 from hashids import Hashids
@@ -117,7 +117,9 @@ def signUp():
                 "signup.html", userID=userID, buttonVisible="buttoninvis"
             )
             resp = make_response(output)
-            resp.set_cookie("userID", userID)
+            expiration_date = datetime.now() + timedelta(days=30)
+            expiration_timestamp = expiration_date.timestamp()
+            resp.set_cookie("userID", userID, expires=expiration_timestamp)
             return resp
         else:
             return render_template("signup.html", userID="Your User ID")
@@ -135,7 +137,9 @@ def logIn():
             if userPresent:
                 output = redirect("/stats")
                 resp = make_response(output)
-                resp.set_cookie("userID", userID)
+                expiration_date = datetime.now() + timedelta(days=30)
+                expiration_timestamp = expiration_date.timestamp()
+                resp.set_cookie("userID", userID, expires=expiration_timestamp)
                 return resp
             else:
                 return render_template("login.html", ErrorValid="errorTrue")
