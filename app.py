@@ -310,6 +310,7 @@ def stats():
 
 
 @app.route("/<id>")
+@app.route("/<id>/")
 def url_redirection(id):
     info = URLsColl.find_one({"ShortenedURL": id})
     if info:
