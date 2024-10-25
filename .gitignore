@@ -1,3 +1,7 @@
 .venv
 __pycache__
 .env
+package.json
+package-lock.json
+node_modules
+.vercel

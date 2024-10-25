@@ -81,7 +81,7 @@ URLsColl.create_index("UserID")
 
 usersColl.create_index("ID", unique=True)
 usersColl.create_index("UserID", unique=True)
-print("Successfully connected MongoDB.")
+print("Successfully connected to MongoDB.")
 # endregion
 #! --------------------------------------------------
 #! --------------------------------------------------
