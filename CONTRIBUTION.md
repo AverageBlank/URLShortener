@@ -39,7 +39,7 @@ Make sure you have Python and MongoDB installed on your system.
 3. **Install the required libraries**
 
    ```bash
-   pip install flask pymongo datetime hashids python-dotenv
+   pip install -r requirements.txt
    ```
 
 4. **Set up environment variables**
