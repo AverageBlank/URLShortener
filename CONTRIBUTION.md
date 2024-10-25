@@ -9,6 +9,71 @@ Thank you for your interest in contributing to **URLShortener**! We welcome cont
 ```bash
 git clone https://github.com/your-username/URLShortener.git
 ```
+
+## Setting Up Locally
+
+### Prerequisites
+
+Make sure you have Python and MongoDB installed on your system.
+
+- **[Python](https://www.python.org/downloads/)**: Download and install Python.
+- **[MongoDB](https://docs.mongodb.com/manual/installation/)**: Follow the installation guide for MongoDB.
+- **[MongoDB Compass](https://www.mongodb.com/products/compass)**: Download and install MongoDB Compass for a GUI to interact with MongoDB.
+
+### Installation Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/AverageBlank/URLShortener.git
+   cd URLShortener
+   ```
+
+2. **Create a virtual environment**
+
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate  # On bash use `source venv/bin/activate`
+   ```
+
+3. **Install the required libraries**
+
+   ```bash
+   pip install flask pymongo datetime hashids python-dotenv
+   ```
+
+4. **Set up environment variables**
+
+   - Create a `.env` file in the root directory of the project.
+   - Add your MongoDB URI and a secret key in the `.env` file. For example:
+     ```env
+     link={your_mongodb_uri}
+     SECRET_KEY={your_secret_key}
+     ```
+
+5. **Run MongoDB**
+
+   - Start the MongoDB server. If you installed MongoDB locally, you can start it with the following command:
+     ```bash
+     mongod
+     ```
+
+6. **Connect to MongoDB with MongoDB Compass**
+
+   - Open MongoDB Compass.
+   - In the "New Connection" window, enter your MongoDB URI in the connection string field (this is the same URI you put in the `.env` file).
+   - Click "Connect" to connect to your MongoDB server.
+   - You can now view and manage your databases and collections through the Compass GUI.
+
+7. **Run the application**
+
+   ```bash
+   flask --app app run
+   ```
+
+8. **Open your browser**
+   - Navigate to `http://127.0.0.1:5000/` to see the application running locally.
+
 ## Making Changes
 
 To ensure a smooth contribution process, please follow these guidelines when making changes to the **URLShortener** project:
