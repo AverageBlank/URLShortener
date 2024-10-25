@@ -14,6 +14,9 @@ https://github.com/AverageBlank/URLShortener/assets/112507212/f0203f19-f348-4267
 
 This website is currently hosted at [trim.lol](https://trim.lol).
 
+## Contribution
+Please checkout [CONTRIBUTION.md](https://github.com/AvgBlank/URLShortener/blob/Master/CONTRIBUTION.md) for more information regarding contribution
+
 ## Setting Up Locally
 
 ### Prerequisites
