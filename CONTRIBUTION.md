@@ -20,7 +20,7 @@ To ensure a smooth contribution process, please follow these guidelines when mak
 
 - **Python Code**: Adhere to PEP 8 standards. Keep functions and methods concise, modular, and single-purpose.
 - **HTML/CSS/JavaScript**: Follow best practices. Use semantic HTML, modular and responsive CSS, and clean, well-structured JavaScript.
-- **Naming Conventions**: Choose descriptive, consistent names for variables, functions, and files.
+- **Naming Conventions**: Choose descriptive, consistent names for variables, functions, and files. Also use camelCase.
 - **Comments**: Only add comments where they help explain complex logic. Keep comments clear and concise.
 
 ### Commit Messages
