@@ -334,3 +334,6 @@ def error_404():
 
 
 # endregion
+
+if __name__ == "__main__":
+    app.run(debug=True)
