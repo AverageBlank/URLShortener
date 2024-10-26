@@ -1,15 +1,71 @@
-{%extends 'base.html' %} {%block content%}
+{% extends 'base.html' %} 
+{% block content %}
 
-<div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
-  <h1 class="text-7xl font-bold text-center">{%block title%}404{%endblock%}</h1>
-  <p>
+<div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900 futuristic-bg shadow-lg transition-shadow duration-300 ease-in-out">
+  <h1 class="text-7xl font-bold text-center futuristic-title">{% block title %}404{% endblock %}</h1>
+  <p class="text-lg text-gray-300">
     Error! Page not found. Go back to
-    <a class="text-blue-700 underline" href="/">Home</a>
+    <a class="text-blue-700 underline futuristic-link hover:text-blue-500 transition-colors duration-200" href="/">Home</a>
   </p>
 </div>
-<p class="text-blue-200"><a href="https://github.com/averageblank/urlshortener" class="underline"
-    target="_blank">Github</a>. Developed By
-  <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
-    href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+
+<p class="text-blue-200 text-center mt-4">
+  <a href="https://github.com/averageblank/urlshortener" class="underline futuristic-link hover:text-blue-300 transition-colors duration-200" target="_blank">Github</a>. Developed By
+  <a href="https://github.com/AverageBlank" target="_blank" class="underline futuristic-link hover:text-blue-300 transition-colors duration-200">AverageBlank</a> and
+  <a href="https://github.com/AalokeCode" target="_blank" class="underline futuristic-link hover:text-blue-300 transition-colors duration-200">AalokeCode</a>
 </p>
-{%endblock%}
+
+{% endblock %}
+
+{% block script %}
+<style>
+  /* Futuristic Background */
+  .futuristic-bg {
+    background: radial-gradient(circle at center, #1c1c3c, #2f2f55);
+    box-shadow: 0px 0px 20px rgba(0, 150, 255, 0.3), inset 0px 0px 15px rgba(0, 150, 255, 0.2);
+    animation: bg-pulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bg-pulse {
+    0% { box-shadow: 0 0 15px rgba(0, 150, 255, 0.3), inset 0 0 10px rgba(0, 150, 255, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(0, 150, 255, 0.4), inset 0 0 20px rgba(0, 150, 255, 0.3); }
+  }
+
+  /* Title Glow Effect */
+  .futuristic-title {
+    color: #e5e7eb;
+    text-shadow: 0 0 8px rgba(0, 150, 255, 0.6), 0 0 12px rgba(0, 150, 255, 0.4);
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 8px rgba(0, 150, 255, 0.5), 0 0 10px rgba(0, 150, 255, 0.3); }
+    to { text-shadow: 0 0 15px rgba(0, 150, 255, 0.8), 0 0 20px rgba(0, 150, 255, 0.5); }
+  }
+
+  /* Futuristic Link Hover Effect */
+  .futuristic-link {
+    color: #3b82f6;
+    text-shadow: 0 0 6px rgba(0, 150, 255, 0.4);
+    position: relative;
+  }
+
+  .futuristic-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: rgba(0, 150, 255, 0.5);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .futuristic-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+</style>
+{% endblock %}
