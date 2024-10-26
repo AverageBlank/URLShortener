@@ -8,7 +8,7 @@ This app takes any long URL (like that 200-character link to your favorite artic
 Key Benefits:
 
 Easy Sharing: Shortened URLs are perfect for sharing on social media, emails, and texts.
-Tracking Clicks (if available): Some versions of this app may even let you see how many people clicked your link.
+This app lets you see how many people have clicked on your shortened link, giving you insights into engagement
 
 ### 2. Getting Started: How to Shorten a URL
 Here’s a simple step-by-step on how to shorten a URL:
@@ -20,11 +20,12 @@ Copy Your Short URL: Click the “Copy” button next to your shortened link, an
 That’s it! You’ve just turned a long URL into a sleek, shareable link.
 
 ### 3. Viewing Your Shortened URLs
-If the app includes a user account feature, you may be able to save your shortened URLs. Here’s how to view them:
+
+you may be able to save your shortened URLs. Here’s how to view them:
 
 Log into Your Account: Sign in to view your saved links.
 Check Your Dashboard: Your dashboard will list all your shortened URLs, making it easy to access or copy them again.
-Click Tracking (if available): Some links might show how many times they’ve been clicked, helping you track engagement.
+Click Tracking is available - Some links might show how many times they’ve been clicked, helping you track engagement.
 
 ###4. Troubleshooting Common Issues
 Here are a few quick fixes if you run into trouble:
@@ -38,7 +39,7 @@ Q: Is there a limit to how many URLs I can shorten?
 A: There’s usually no limit, so shorten as many URLs as you’d like! Just remember that some apps may have usage limits for anonymous users.
 
 Q: Do my shortened URLs ever expire?
-A: This depends on the app’s settings. Some shortened links expire after a period, while others stay active indefinitely.
+A: Yes, currently, all shortened links will eventually expire after a certain period. There’s no option to make a link permanent at this time.
 
 Q: Can I track who clicked my link?
 A: Tracking usually shows click counts, but it doesn’t track individual users for privacy reasons.
