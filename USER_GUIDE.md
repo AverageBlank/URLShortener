@@ -27,7 +27,7 @@ Log into Your Account: Sign in to view your saved links.
 Check Your Dashboard: Your dashboard will list all your shortened URLs, making it easy to access or copy them again.
 Click Tracking is available - Some links might show how many times they’ve been clicked, helping you track engagement.
 
-###4. Troubleshooting Common Issues
+### 4. Troubleshooting Common Issues
 Here are a few quick fixes if you run into trouble:
 
 Error Message: If you see an error, double-check that your URL is valid (starts with http:// or https://).
