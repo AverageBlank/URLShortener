@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/static/favicon.svg" />
-  <title>{%block title %} {% endblock %} - trim.lol</title>
+  <title>{% block title %} {% endblock %} - trim.lol</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,13 +20,58 @@
     .errorTrue {
       display: block !important;
     }
+
+    /* Futuristic Background Animation */
+    .futuristic-bg {
+      background: radial-gradient(circle at center, #1c1c3c, #2f2f55);
+      box-shadow: 0px 0px 15px rgba(0, 150, 255, 0.4), inset 0px 0px 10px rgba(0, 150, 255, 0.2);
+      animation: bg-pulse 8s infinite alternate;
+    }
+
+    @keyframes bg-pulse {
+      from {
+        background: radial-gradient(circle at center, #1c1c3c, #2f2f55);
+      }
+      to {
+        background: radial-gradient(circle at center, #1a1a36, #2b2b50);
+      }
+    }
+
+    /* Glowing Logo Effect */
+    .futuristic-logo {
+      filter: drop-shadow(0px 0px 8px rgba(0, 150, 255, 0.6));
+      transition: filter 0.3s ease-in-out;
+    }
+
+    .futuristic-logo:hover {
+      filter: drop-shadow(0px 0px 12px rgba(0, 150, 255, 0.8));
+    }
+
+    /* Title Glow Effect */
+    .futuristic-title {
+      color: #e5e7eb;
+      text-shadow: 0 0 8px rgba(0, 150, 255, 0.6), 0 0 12px rgba(0, 150, 255, 0.4);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(0, 150, 255, 0.5), 0 0 10px rgba(0, 150, 255, 0.3);
+      }
+      to {
+        text-shadow: 0 0 12px rgba(0, 150, 255, 0.8), 0 0 15px rgba(0, 150, 255, 0.5);
+      }
+    }
   </style>
 </head>
 
-<body class="h-full w-full bg-zinc-950">
+<body class="h-full w-full bg-zinc-950 futuristic-bg">
   <div
     class="flex justify-center items-center gap-3 md:gap-7 2xl:gap-10 flex-col w-full h-full bg-[url('static/bg-gradient.png')] bg-top text-white">
-    <a href="/"><img src="static/logo.svg" class="w-56 pb-3" /></a>
+    <a href="/">
+      <img src="static/logo.svg" class="w-56 pb-3 futuristic-logo" />
+    </a>
+    <h1 class="text-4xl futuristic-title">{% block title %}</h1>
     {% block content %} {% endblock %}
   </div>
   {% block script %} {% endblock %}

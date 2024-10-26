@@ -1,39 +1,42 @@
-{% extends 'base.html' %} {%block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 <div
-  class="p-8 px-10 md:p-10 2xl:p-16 m-3 rounded-xl w-11/12 md:3/4 lg:w-1/2 2xl:w-2/5 flex items-center flex-col gap-3 bg-zinc-900">
+  class="p-8 px-10 md:p-10 2xl:p-16 m-3 rounded-xl w-11/12 md:3/4 lg:w-1/2 2xl:w-2/5 flex items-center flex-col gap-3 bg-zinc-900 futuristic-bg">
   <div class="flex gap-3 justify-between items-center w-full">
-    <h1 class="text-2xl font-bold">{%block title%}Generate URL{%endblock%}</h1>
+    <h1 class="text-2xl font-bold futuristic-title">{% block title %}Generate URL{% endblock %}</h1>
     <a href="/stats"
-      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Check
-      Statistics</a>
+      class="text-center bg-blue-700 hover:bg-blue-800 futuristic-button transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">
+      Check Statistics
+    </a>
   </div>
   <hr class="w-full border-t-2 opacity-25 mb-3 border-zinc-400" />
   <form method="post" action class="flex items-center flex-col w-full" id="generateURLForm">
     <div class="mb-3 w-full">
-      <label>Original URL</label><br />
+      <label class="futuristic-label">Original URL</label><br />
       <input type="text" name="long_url" id="url" placeholder="Enter URL to be shortened"
-        class="rounded-lg p-2 w-full bg-zinc-800" value="{{old_url}}" />
-      <p class="text-sm text-red-500 hidden {{error_url}}">
-        {{error_url_statement}}
+        class="rounded-lg p-2 w-full bg-zinc-800 futuristic-input" value="{{ old_url }}" />
+      <p class="text-sm text-red-500 hidden {{ error_url }}">
+        {{ error_url_statement }}
       </p>
     </div>
     <div class="mb-3 xl:w-4/5 w-11/12">
-      <label>Custom URL</label>
-      <input name="custom_url" type="text" id="custom_url" class="rounded-lg p-2 bg-zinc-800 w-full"
-        placeholder="Enter Custom URL (optional)" value="{{custom_url}}" />
-      <p class="text-sm text-red-500 hidden {{error_custom_url}}">
-        {{error_custom_url_statement}}
+      <label class="futuristic-label">Custom URL</label>
+      <input name="custom_url" type="text" id="custom_url" class="rounded-lg p-2 bg-zinc-800 w-full futuristic-input"
+        placeholder="Enter Custom URL (optional)" value="{{ custom_url }}" />
+      <p class="text-sm text-red-500 hidden {{ error_custom_url }}">
+        {{ error_custom_url_statement }}
       </p>
     </div>
     <button type="submit" value="submit" id="shorten"
-      class="text-center bg-blue-700 hover:bg-blue-800 cursor-pointer mb-5 w-3/4 xl:w-1/2 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">
+      class="text-center bg-blue-700 hover:bg-blue-800 futuristic-button cursor-pointer mb-5 w-3/4 xl:w-1/2 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">
       Shorten URL 🔗
     </button>
     <hr class="border-top border-zinc-700 w-full p-2" />
-    <h1 class="text-xl mb-3 font-bold">Copy your custom URL</h1>
-    <div class="mb-3 rounded-lg w-11/12 xl:w-3/4 p-2 pl-4 bg-zinc-800 flex justify-between">
+    <h1 class="text-xl mb-3 font-bold futuristic-subtitle">Copy your custom URL</h1>
+    <div class="mb-3 rounded-lg w-11/12 xl:w-3/4 p-2 pl-4 bg-zinc-800 flex justify-between futuristic-input">
       <input type="url" id="output" disabled placeholder="Returns your new shortened URL"
-        class="bg-transparent cursor-not-allowed w-3/4" value="{{new_url}}" />
+        class="bg-transparent cursor-not-allowed w-3/4" value="{{ new_url }}" />
       <button type="button" onclick="return copyContent()" id="copyButton"
         class="hover:bg-zinc-700 p-2 transition ease-in-out duration-200 rounded-lg">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white" viewBox="0 0 256 256">
@@ -47,83 +50,93 @@
 </div>
 <div class="flex flex-col justify-center items-center">
   <a href="/logout"
-    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300"><svg
-      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000" viewBox="0 0 256 256">
+    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000" viewBox="0 0 256 256">
       <path
         d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z">
       </path>
-    </svg>Logout</a>
+    </svg>Logout
+  </a>
   <p class="text-blue-200 text-center px-2"><a href="https://github.com/averageblank/urlshortener" class="underline"
       target="_blank">Github</a>. Developed By
     <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
       href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
   </p>
 </div>
-{%endblock%} {%block script %}
-<script>
-  // sleep function
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-    event.preventDefault();
-  }
-  let text = document.getElementById("output");
-  let button = document.getElementById("copyButton").innerHTML;
+{% endblock %}
 
-  // copy button
-  const copyContent = async () => {
-    event.preventDefault();
-    try {
-      await navigator.clipboard.writeText(text.value);
-      copyButton.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>';
-      await sleep(2500);
-      copyButton.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 256 256"> <path d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"></path></svg>';
-      console.log("Content copied to clipboard");
-    } catch (err) {
-      console.error("Failed to copy: ", err);
-    }
-  };
-
-  // clear forms when refreshed
-  window.onload = function () {
-    document.getElementById("generateURLForm").reset();
-  };
-  if ("{{clearForms}}" == "True") {
-    document.getElementById("generateURLForm").reset();
+{% block script %}
+<style>
+  /* Futuristic Background */
+  .futuristic-bg {
+    background: radial-gradient(circle at center, #1c1c3c, #2f2f55);
+    box-shadow: 0px 0px 15px rgba(0, 150, 255, 0.4), inset 0px 0px 10px rgba(0, 150, 255, 0.2);
+    animation: bg-pulse 6s infinite alternate;
   }
 
-  // disable url shortening after you fill in the form
-  document.addEventListener("DOMContentLoaded", function (event) {
-    if ("{{completed}}" == "True") {
-      const button = document.getElementById("shorten");
-      const custom_url = document.getElementById("custom_url");
-      const long_url = document.getElementById("url");
-      button.disabled = true;
-      custom_url.disabled = true;
-      long_url.disabled = true;
-      button.classList.remove("bg-blue-700");
-      button.classList.remove("cursor-pointer");
-      button.classList.remove("hover:bg-blue-800");
-      button.classList.add("bg-gray-500");
-      button.classList.add("cursor-not-allowed");
-      custom_url.classList.add("cursor-not-allowed");
-      long_url.classList.add("cursor-not-allowed");
-    } else {
-      const button = document.getElementById("shorten");
-      const custom_url = document.getElementById("custom_url");
-      const long_url = document.getElementById("url");
-      button.disabled = false;
-      custom_url.disabled = false;
-      long_url.disabled = false;
-      button.classList.remove("bg-gray-500");
-      button.classlist.remove("cursor-not-allowed");
-      button.classList.add("bg-blue-700");
-      button.classList.add("cursor-pointer");
-      button.classList.add("hover:bg-blue-800");
-      custom_url.classList.remove("cursor-not-allowed");
-      long_url.classList.remove("cursor-not-allowed");
+  @keyframes bg-pulse {
+    from {
+      background: radial-gradient(circle at center, #1c1c3c, #2f2f55);
     }
-  });
-</script>
-{%endblock%}
+    to {
+      background: radial-gradient(circle at center, #1a1a36, #2b2b50);
+    }
+  }
+
+  /* Futuristic Title and Subtitle Glow */
+  .futuristic-title, .futuristic-subtitle {
+    color: #e5e7eb;
+    text-shadow: 0 0 8px rgba(0, 150, 255, 0.6), 0 0 12px rgba(0, 150, 255, 0.4);
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px rgba(0, 150, 255, 0.5), 0 0 10px rgba(0, 150, 255, 0.3);
+    }
+    to {
+      text-shadow: 0 0 12px rgba(0, 150, 255, 0.8), 0 0 15px rgba(0, 150, 255, 0.5);
+    }
+  }
+
+  /* Input Field Styling */
+  .futuristic-input {
+    box-shadow: inset 0px 0px 8px rgba(0, 150, 255, 0.3);
+    color: #d1d5db;
+    border: 1px solid rgba(0, 150, 255, 0.5);
+  }
+
+  /* Button Animation */
+  .futuristic-button {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    transition: transform 0.2s ease-in-out;
+    animation: button-glow 2s ease-in-out infinite alternate;
+  }
+
+  .futuristic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0, 150, 255, 0.5), 0 0 12px rgba(0, 150, 255, 0.3);
+  }
+
+  @keyframes button-glow {
+    from {
+      box-shadow: 0 0 8px rgba(0, 150, 255, 0.5), 0 0 12px rgba(0, 150, 255, 0.3);
+    }
+    to {
+      box-shadow: 0 0 12px rgba(0, 150, 255, 0.8), 0 0 16px rgba(0, 150, 255, 0.6);
+    }
+  }
+
+  /* Label Styling */
+  .futuristic-label {
+    color: #93c5fd;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .futuristic-label:hover {
+    color: #60a5fa;
+  }
+</style>
+{% endblock %}

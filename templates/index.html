@@ -1,17 +1,18 @@
-{%extends 'base.html'%}
-{%block content %}
-<div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900 futuristic-bg">
     <div class="text-center">
-        <span class="hidden">{%block title%}trim.lol{%endblock%}</span>
-        <h1 class="text-3xl font-bold text-center">A URL Shortener programmed in python</h1>
+        <span class="hidden">{% block title %}trim.lol{% endblock %}</span>
+        <h1 class="text-3xl font-bold text-center text-white futuristic-title">A URL Shortener programmed in Python</h1>
         <p class="text-sm mb-3 text-zinc-300">Built using Flask & MongoDB</p>
     </div>
     <div class="flex gap-1 items-center flex-col md:flex-row">
         <a href="/login"
-            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Log
+            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8 futuristic-button">Log
             in</a>
         <a href="/signup"
-            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Sign
+            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8 futuristic-button">Sign
             Up</a>
     </div>
 </div>
@@ -20,4 +21,34 @@
     <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
         href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
 </p>
-{%endblock%}
+{% endblock %}
+
+{% block script %}
+<!-- Futuristic Styles and Animations -->
+<style>
+    /* Futuristic Background */
+    .futuristic-bg {
+        background: radial-gradient(circle at center, #1a1a2e, #2e2e4d);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+    }
+
+    /* Futuristic Title with Glow */
+    .futuristic-title {
+        color: #ffffff;
+        text-shadow: 0 0 8px rgba(0, 150, 255, 0.7), 0 0 15px rgba(0, 150, 255, 0.5);
+    }
+
+    /* Futuristic Button Styles */
+    .futuristic-button {
+        transition: all 0.3s ease-in-out;
+        background: linear-gradient(135deg, #3b82f6, #5a67d8);
+        box-shadow: 0 4px 10px rgba(91, 134, 229, 0.3);
+    }
+
+    .futuristic-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 6px 15px rgba(91, 134, 229, 0.5);
+    }
+</style>
+{% endblock %}
