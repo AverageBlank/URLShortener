@@ -59,7 +59,7 @@ Make sure you have Python and MongoDB installed on your system.
 4. **Connect to MongoDB with MongoDB Compass**
 
    - Open MongoDB Compass.
-   - In the "New Connection" window, enter your MongoDB URI in the connection string field (this is the same URI you entered during the install phase (present in the `.env` file in rooe dir of the project)).
+   - In the "New Connection" window, enter your MongoDB URI in the connection string field (this is the same URI you entered during the install phase (present in the `.env` file in root directory of the project)).
    - Click "Connect" to connect to your MongoDB server.
    - You can now view and manage your databases and collections through the Compass GUI.
 
