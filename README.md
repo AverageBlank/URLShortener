@@ -78,6 +78,52 @@ Make sure you have Python and MongoDB installed on your system.
 6. **Open your browser**
    - Navigate to `http://127.0.0.1:5000/` to see the application running locally.
 
+## Setting Up Locally Using Docker
+
+### Prerequisites
+
+Make sure you have Docker installed on your system.
+
+- **[Docker](https://www.docker.com/)**: Download and install Docker.
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/AverageBlank/URLShortener.git
+   cd URLShortener
+   ```
+
+2. **Setup environment variables**
+
+   - Create a `.env` file in the root directory of the project and paste the following variables:
+     ```env
+      # Common credentials
+      DB_USERNAME={your_mongodb_username}
+      DB_PASSWORD={your_mongodb_password}
+      SECRET_KEY={your_secret_key}
+      DB_HOST=database
+      DB_NAME=URLShorteners
+      
+      # Flask App
+      link=mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?authSource=admin&retryWrites=true&w=majority
+      
+      # MongoDB
+      MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      MONGO_INITDB_DATABASE=${DB_NAME}
+     ```
+   - Now set the DB_USERNAME, DB_PASSWORD & SECRET_KEY variables in the `.env` file according to your needs.
+
+3. **Run the containers**
+
+   - Start MongoDB & Flask server with the following command:
+     ```bash
+     docker compose up
+     ```
+
+4. **Open your browser**
+   - Navigate to `http://127.0.0.1:5000/` to see the application running locally.
+
 ## Tech Stack
 
 - **Python**: The main programming language used for the backend.
