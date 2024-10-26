@@ -45,6 +45,9 @@ from os import environ
 from random import choice as randchoice
 from string import ascii_letters, digits, punctuation
 
+# ? Pytz --> For handling timezone
+from pytz import timezone
+
 # endregion
 #! --------------------------------------------------
 #! --------------------------------------------------
@@ -196,7 +199,7 @@ def generateurl():
                         custom_url=customURL,
                         error_url_statement="URL cannot be shortened. Please try again.",
                     )
-            now = datetime.now()
+            now = datetime.now(timezone("Asia/Kolkata"))
             id = URLsColl.count_documents({}) + 1
             time = now.strftime("%d/%m/%Y %H:%M:%S")
             userID = request.cookies.get("userID")
