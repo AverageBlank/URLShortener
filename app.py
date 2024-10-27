@@ -26,6 +26,7 @@ from flask import (
     url_for,
 )
 
+
 # ? MongoDB --> For storing URL databases
 from pymongo import MongoClient
 
@@ -45,6 +46,9 @@ from os import environ
 from random import choice as randchoice
 from string import ascii_letters, digits, punctuation
 
+# ? Authlib --> For Google Authentication
+from authlib.integrations.flask_client import OAuth
+
 # endregion
 #! --------------------------------------------------
 #! --------------------------------------------------
@@ -61,6 +65,24 @@ domain = "https://trim.lol/"
 hasUsedApp = False
 
 
+# ? Google OAuth Client ID, Secret, and Redirect URI
+google_client_id = environ.get("google_client_id")
+google_client_secret = environ.get("google_client_secret")
+
+# ? Setting OAuth App
+oauth = OAuth(app)
+google = oauth.register(
+    name="google",
+    client_id=google_client_id,
+    client_secret=google_client_secret,
+    access_token_url="https://accounts.google.com/o/oauth2/token",
+    access_token_params=None,
+    authorize_url="https://accounts.google.com/o/oauth2/auth",
+    authorize_params=None,
+    api_base_url="https://www.googleapis.com/oauth2/v1/",
+    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
+    client_kwargs={"scope": "email profile"},
+)
 # ? Connecting to the Mongo DB Database
 load_dotenv()
 mongoLink = environ.get("link")
@@ -147,6 +169,36 @@ def logIn():
             return render_template("login.html")
     else:
         return redirect("/stats")
+
+
+# login for google
+@app.route("/login/google")
+def login_google():
+    google = oauth.create_client("google")
+    redirect_uri = url_for("authorize_google", _external=True)
+    return google.authorize_redirect(redirect_uri)
+
+
+# authorize for google
+@app.route("/authorize/google")
+def authorize_google():
+    google = oauth.create_client("google")
+    token = google.authorize_access_token()
+    resp = google.get("userinfo")
+    user_info = resp.json()
+
+    userID = user_info.get("email")
+
+    # Check if user already exists, if not, insert into usersColl
+    if not usersColl.find_one({"UserID": userID}):
+        new_user_id = usersColl.count_documents({}) + 1
+        usersColl.insert_one({"ID": new_user_id, "UserID": userID})
+
+    # Save user ID in cookies and redirect to /stats
+    response = make_response(redirect("/stats"))
+    expiration_date = datetime.now() + timedelta(days=30)
+    response.set_cookie("userID", userID, expires=expiration_date.timestamp())
+    return response
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -296,16 +348,14 @@ def generateurl():
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
-    if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
-        userID = request.cookies.get("userID")
+    userID = request.cookies.get("userID")
+    print("UserID in /stats:", userID)  # Debugging output
+    if userID and usersColl.find_one({"UserID": userID}) != None:
         urls = list(URLsColl.find({"UserID": userID}, {"_id": 0}))
-        if request.method == "POST":
-            return render_template("stats.html", urls=urls)
-        return render_template("stats.html", urls=urls)
+        return render_template("stats.html", urls=urls, userID=userID)
     else:
         response = make_response(redirect("/"))
-        if request.cookies.get("userID") != None:
-            response.set_cookie("userID", "", expires=0)
+        response.set_cookie("userID", "", expires=0)
         return response
 
 
