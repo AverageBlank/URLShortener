@@ -8,7 +8,7 @@
 # * ------- Husain Khorakiwala
 
 # * ---- Source Code:
-# * ------- https://github.com/AverageBlank/URLShortener
+# * ------- https://github.com/AvgBlank/URLShortener
 # endregion
 
 
@@ -106,7 +106,6 @@ URLsColl.create_index("UserID")
 
 usersColl.create_index("ID", unique=True)
 usersColl.create_index("UserID", unique=True)
-print("Successfully connected to MongoDB.")
 # endregion
 #! --------------------------------------------------
 #! --------------------------------------------------
@@ -197,8 +196,8 @@ def authorize_google():
         new_user_id = usersColl.count_documents({}) + 1
         usersColl.insert_one({"ID": new_user_id, "UserID": userID})
 
-    # Save user ID in cookies and redirect to /stats
-    response = make_response(redirect("/stats"))
+    # Save user ID in cookies and redirect to /generateurl
+    response = make_response(redirect("/generateurl"))
     expiration_date = datetime.now() + timedelta(days=30)
     response.set_cookie("userID", userID, expires=expiration_date.timestamp())
     return response
@@ -352,7 +351,6 @@ def generateurl():
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
     userID = request.cookies.get("userID")
-    print("UserID in /stats:", userID)  # Debugging output
     if userID and usersColl.find_one({"UserID": userID}) != None:
         urls = list(URLsColl.find({"UserID": userID}, {"_id": 0}))
         return render_template("stats.html", urls=urls, userID=userID)
