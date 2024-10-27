@@ -1,32 +1,71 @@
 # URL Shortener
 
-## About the Project
+## Overview
 
-URLShortener is a robust and user-friendly solution designed to simplify the management and sharing of long web addresses. With its intuitive interface and efficient backend powered by Flask and MongoDB, this project offers a seamless experience for shortening URLs. Developed with a focus on practicality and ease of use, URLShortener provides users with a reliable ally in managing their online links effortlessly.
-
-## Purpose
-
-The purpose of this project is to learn how to deal with databases, web development frameworks, and various libraries used in creating a URL shortener. This project provides hands-on experience with technologies like MongoDB, Flask, and Tailwind CSS.
+URLShortener is a robust, user-friendly application designed to make managing and sharing long web addresses simpler. Built with an efficient backend powered by Flask and MongoDB, the tool provides a smooth experience for creating short URLs. It is built with a focus on practicality, usability, and reliability, helping users manage their online links with ease.
 
 ## Live Preview
 
 https://github.com/AverageBlank/URLShortener/assets/112507212/f0203f19-f348-4267-953c-c99db8e5476d
 
-<!-- This website is currently hosted at [trim.lol](https://trim.lol). -->
-This website is not currently being hosted.
+This website is currently hosted at [trim.lol](https://trim.lol).
 
 ## Contribution
-Please checkout [CONTRIBUTION.md](https://github.com/AvgBlank/URLShortener/blob/Master/CONTRIBUTION.md) for more information regarding contribution
 
-## Setting Up Locally
+Please check out [CONTRIBUTION.md](https://github.com/AvgBlank/URLShortener/blob/Master/CONTRIBUTION.md) for more information regarding contribution.
+
+## Setting up Locally using Docker (Recommended Method)
 
 ### Prerequisites
 
-Make sure you have Python and MongoDB installed on your system.
+Ensure you have Docker installed on your system.
 
-- **[Python](https://www.python.org/downloads/)**: Download and install Python.
-- **[MongoDB](https://docs.mongodb.com/manual/installation/)**: Follow the installation guide for MongoDB.
-- **[MongoDB Compass](https://www.mongodb.com/products/compass)**: Download and install MongoDB Compass for a GUI to interact with MongoDB.
+- **[Docker](https://www.docker.com/)**: Download and install Docker.
+
+### Installation Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/AverageBlank/URLShortener.git
+   cd URLShortener
+   ```
+
+2. **Setup environment variables**
+
+- Create a `.env` file in the root directory of the project and paste the following variables:
+
+  ```env
+  link={your_mongo_uri}
+  SECRET_KEY={your_secret_key}
+  ```
+
+  - Now set the `link` and `SECRET_KEY` variables in the `.env` file according to your needs.
+
+3. **Run the container**
+
+- Start MongoDB & Flask server with one of the following command:
+  ```bash
+  docker compose up
+  ```
+  **_or (on Some Computers)_**
+  ```bash
+  docker-compose up
+  ```
+
+4. **Open your browser**
+
+   - Navigate to `http://127.0.0.1:5000/` to see the application running locally.
+
+## Setting up Locally (without Docker)
+
+### Prerequisites
+
+Ensure have Python and MongoDB installed on your system.
+
+- **[Python](https://www.python.org/downloads/)**: Install Python.
+- **[MongoDB](https://docs.mongodb.com/manual/installation/)**: Follow MongoDB's installation guide.
+- **[MongoDB Compass](https://www.mongodb.com/products/compass)** **_(optional)_**: A GUI for MongoDB.
 
 ### Installation Steps
 
@@ -39,15 +78,8 @@ Make sure you have Python and MongoDB installed on your system.
 
 2. **Run install script**
 
-   For Linux
-   ```bash
-   bash install.sh
-   ```
-
-   For Windows
-   ```bash
-   ./install.bat
-   ```
+   - Linux/MacOS: `bash install.sh`
+   - Windows: `.\install.bat`
 
 3. **Run MongoDB**
 
@@ -56,7 +88,7 @@ Make sure you have Python and MongoDB installed on your system.
      mongod
      ```
 
-4. **Connect to MongoDB with MongoDB Compass**
+4. **Connect to MongoDB with MongoDB Compass** **_(optional)_**
 
    - Open MongoDB Compass.
    - In the "New Connection" window, enter your MongoDB URI in the connection string field (this is the same URI you entered during the install phase (present in the `.env` file in root directory of the project)).
@@ -65,15 +97,8 @@ Make sure you have Python and MongoDB installed on your system.
 
 5. **Run the application**
 
-   For Linux
-   ```bash
-   bash start.sh
-   ```
-
-   For Windows
-   ```bash
-   ./start.bat
-   ```
+   - Linux/MacOS: `bash start.sh`
+   - Windows: `.\start.bat`
 
 6. **Open your browser**
    - Navigate to `http://127.0.0.1:5000/` to see the application running locally.

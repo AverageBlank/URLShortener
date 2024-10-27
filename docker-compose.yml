@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+  database:
+    image: mongo
+    restart: always
+    env_file:
+      - .env
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    volumes:
+      - ./:/URLShortner/
+    env_file:
+      - .env
