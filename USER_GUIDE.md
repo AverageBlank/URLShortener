@@ -21,11 +21,11 @@ That’s it! You’ve just turned a long URL into a sleek, shareable link.
 
 ### 3. Viewing Your Shortened URLs
 
-you may be able to save your shortened URLs. Here’s how to view them:
+After saving your shortened URLs, here’s how to view them:
 
 Log into Your Account: Sign in to view your saved links.
 Check Your Dashboard: Your dashboard will list all your shortened URLs, making it easy to access or copy them again.
-Click Tracking is available - Some links might show how many times they’ve been clicked, helping you track engagement.
+Click Tracking is available - All links show how many times they’ve been clicked, helping you track engagement.
 
 ### 4. Troubleshooting Common Issues
 Here are a few quick fixes if you run into trouble:
@@ -39,7 +39,7 @@ Q: Is there a limit to how many URLs I can shorten?
 A: There’s usually no limit, so shorten as many URLs as you’d like! Just remember that some apps may have usage limits for anonymous users.
 
 Q: Do my shortened URLs ever expire?
-A: Yes, currently, all shortened links will eventually expire after a certain period. There’s no option to make a link permanent at this time.
+A: No, shortened links that have been created will never expire.
 
 Q: Can I track who clicked my link?
 A: Tracking usually shows click counts, but it doesn’t track individual users for privacy reasons.
@@ -47,12 +47,7 @@ A: Tracking usually shows click counts, but it doesn’t track individual users 
 Q: How secure are my shortened links?
 A: Shortened links are generally secure, but avoid using them for sensitive or private information.
 
-### 6. Pro Tips for Using the URL Shortener App
-Organize Links: If the app lets you categorize or label your links, use this feature to keep everything organized.
-Use Short Links for Campaigns: Perfect for marketing or social media campaigns. Use different short links to track engagement across platforms.
-Check Click Stats Regularly: If you have access to analytics, review your stats to see which links are performing well.
-
-### 7. Contact and Support
+### 6. Contact and Support
 If you have any questions or need help with the app:
 
 Check the FAQ: Most common questions are answered in this guide.
