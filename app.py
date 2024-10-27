@@ -46,6 +46,9 @@ from os import environ
 from random import choice as randchoice
 from string import ascii_letters, digits, punctuation
 
+# ? Pytz --> For handling timezone
+from pytz import timezone
+
 # ? Authlib --> For Google Authentication
 from authlib.integrations.flask_client import OAuth
 
@@ -146,7 +149,7 @@ def signUp():
         else:
             return render_template("signup.html", userID="Your User ID")
     else:
-        return redirect("/stats")
+        return redirect("/generateurl")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -157,7 +160,7 @@ def logIn():
             userID = request.form["userid"]
             userPresent = usersColl.find_one({"UserID": userID})
             if userPresent:
-                output = redirect("/stats")
+                output = redirect("/generateurl")
                 resp = make_response(output)
                 expiration_date = datetime.now() + timedelta(days=30)
                 expiration_timestamp = expiration_date.timestamp()
@@ -168,7 +171,7 @@ def logIn():
         else:
             return render_template("login.html")
     else:
-        return redirect("/stats")
+        return redirect("/generateurl")
 
 
 # login for google
@@ -204,7 +207,7 @@ def authorize_google():
 @app.route("/", methods=["GET", "POST"])
 def home():
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
-        return redirect("/stats")
+        return redirect("/generateurl")
     else:
         response = make_response(render_template("index.html"))
         if request.cookies.get("userID") != None:
@@ -248,7 +251,7 @@ def generateurl():
                         custom_url=customURL,
                         error_url_statement="URL cannot be shortened. Please try again.",
                     )
-            now = datetime.now()
+            now = datetime.now(timezone("Asia/Kolkata"))
             id = URLsColl.count_documents({}) + 1
             time = now.strftime("%d/%m/%Y %H:%M:%S")
             userID = request.cookies.get("userID")
