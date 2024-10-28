@@ -1,30 +1,46 @@
-{%extends 'base.html' %}
-
-{%block content %}
-<div class="p-5 md:p-10 2xl:p-20 w-full md:w-5/6 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+{%extends 'base.html' %} {%block content %}
+<div
+  class="p-5 md:p-10 2xl:p-20 w-full md:w-5/6 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900"
+>
   <!-- Greeting with user email -->
   <p class="text-xl font-semibold text-white">Hello, {{ userID }}</p>
-  <div class="flex flex-col justify-center items-center w-full md:flex-row md:justify-between">
+  <div
+    class="flex flex-col justify-center items-center w-full md:flex-row md:justify-between"
+  >
     <h1 class="text-2xl font-bold">{%block title%}Statistics{%endblock%}</h1>
     <div class="flex gap-3 items-center">
       <form method="post" action class="flex items-center justify-center">
-        <button type="submit" value="submit" class="flex items-center h-full justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256">
+        <button
+          type="submit"
+          value="submit"
+          class="flex items-center h-full justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="#fff"
+            viewBox="0 0 256 256"
+          >
             <path
-              d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z">
-            </path>
+              d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"
+            ></path>
           </svg>
         </button>
       </form>
-      <a href="/generateurl"
-        class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8">Generate
-        a new URL</a>
+      <a
+        href="/generateurl"
+        class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8"
+        >Generate a new URL</a
+      >
     </div>
   </div>
   <hr class="w-full border-t-2 opacity-25 border-zinc-400" />
   <div class="w-full h-80 overflow-x-auto overflow-y-auto">
     <table class="w-full text-sm text-left rtl:text-right text-zinc-400">
-      <thead class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400">
+      <thead
+        class="text-xs uppercase border-b border-b-zinc-700 dark:text-zinc-400"
+      >
         <tr>
           <th scope="col" class="px-6 py-3">Original URL</th>
           <th scope="col" class="px-6 py-3">Shortened URL</th>
@@ -37,13 +53,25 @@
         <tr class="odd:bg-zinc-900 even:bg-zinc-800 border-zinc-700">
           <td class="px-6 py-4 truncate max-w-96">{{url['OriginalURL']}}</td>
           <td class="px-6 py-4 flex items-center gap-2">
-            <span class="shortened-url block max-w-80 truncate">https://trim.lol/{{url['ShortenedURL']}}</span>
-            <button class="copy-button text-white bg-blue-700 flex items-center gap-2 hover:bg-blue-800 p-2 rounded-lg"
-              onclick="copyContent(this)" data-url="https://trim.lol/{{url['ShortenedURL']}}">Copy
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="fill-white" viewBox="0 0 256 256">
+            <span class="shortened-url block max-w-80 truncate"
+              >https://trim.lol/{{url['ShortenedURL']}}</span
+            >
+            <button
+              class="copy-button text-white bg-blue-700 flex items-center gap-2 hover:bg-blue-800 p-2 rounded-lg"
+              onclick="copyContent(this)"
+              data-url="https://trim.lol/{{url['ShortenedURL']}}"
+            >
+              Copy
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                class="fill-white"
+                viewBox="0 0 256 256"
+              >
                 <path
-                  d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z">
-                </path>
+                  d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"
+                ></path>
               </svg>
             </button>
           </td>
@@ -56,21 +84,38 @@
   </div>
 </div>
 <div class="flex flex-col justify-center items-center">
-  <a href="/logout"
-    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300"><svg
-      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000" viewBox="0 0 256 256">
+  <a
+    href="/logout"
+    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="#000"
+      viewBox="0 0 256 256"
+    >
       <path
-        d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z">
-      </path>
-    </svg>Logout</a>
-  <p class="text-blue-200 text-center px-2"><a href="https://github.com/averageblank/urlshortener" class="underline"
-      target="_blank">Github</a>. Developed By
-    <a href="https://github.com/AvgBlank" target="_blank" class="underline">AvgBlank</a> and <a
-      href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+        d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z"
+      ></path></svg
+    >Logout</a
+  >
+  <p class="text-blue-200 text-center px-2">
+    <a
+      href="https://github.com/averageblank/urlshortener"
+      class="underline"
+      target="_blank"
+      >Github</a
+    >. Developed By
+    <a href="https://github.com/AvgBlank" target="_blank" class="underline"
+      >AvgBlank</a
+    >
+    and
+    <a href="https://github.com/AalokeCode" target="_blank" class="underline"
+      >AalokeCode</a
+    >
   </p>
 </div>
-{%endblock%}
-{%block script %}
+{%endblock%} {%block script %}
 <script>
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -78,7 +123,7 @@
 
   const copyContent = async (button) => {
     try {
-      const text = button.getAttribute('data-url');
+      const text = button.getAttribute("data-url");
 
       await navigator.clipboard.writeText(text);
       console.log("Content copied to clipboard");
@@ -92,7 +137,5 @@
       console.error("Failed to copy: ", err);
     }
   };
-
-
 </script>
 {%endblock%}
