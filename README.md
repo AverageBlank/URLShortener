@@ -105,19 +105,19 @@ Ensure you have Python and MongoDB installed on your system.
 
 ## Tech Stack
 
-- **Python**: The main programming language used for the backend.
-- **HTML**: Markup language used for structuring the web pages.
-- **Tailwind CSS**: A utility-first CSS framework for styling the web pages.
-- **JavaScript**: Programming language used for client-side scripting.
+- **[Python](https://www.python.org/)**: The main programming language used for the backend.
+- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**: Markup language used for structuring the web pages.
+- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for styling the web pages.
+- **[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)**: Programming language used for client-side scripting.
 
 ## Python Libraries Used
 
-- **Flask**: A lightweight WSGI web application framework in Python.
-- **PyMongo**: A Python distribution containing tools for working with MongoDB.
-- **Datetime**: A module to work with dates and times.
-- **Hashids**: A small library to generate YouTube-like hashes from one or many numbers.
-- **Python-dotenv**: Reads key-value pairs from a `.env` file and can set them as environment variables.
-- **OS**: A standard library in Python to interact with the operating system. Built-in Python library
-- **Random**: Implements pseudo-random number generators for various distributions. Built-in Python library
-- **String**: A built-in Python library to perform common string operations.
-- **Gunicorn**: Python WSGI HTTP Server for UNIX systems(Used for Render Hosting. Ignore if running local instance)
+- **[Flask](https://flask.palletsprojects.com/)**: A lightweight WSGI web application framework in Python.
+- **[PyMongo](https://pymongo.readthedocs.io/)**: A Python distribution containing tools for working with MongoDB.
+- **[Datetime](https://docs.python.org/3/library/datetime.html)**: A module to work with dates and times.
+- **[Hashids](https://hashids.org/python/)**: A small library to generate YouTube-like hashes from one or many numbers.
+- **[Python-dotenv](https://saurabh-kumar.com/python-dotenv/)**: Reads key-value pairs from a `.env` file and can set them as environment variables.
+- **[OS](https://docs.python.org/3/library/os.html)**: A standard library in Python to interact with the operating system. Built-in Python library
+- **[Random](https://docs.python.org/3/library/random.html)**: Implements pseudo-random number generators for various distributions. Built-in Python library
+- **[String](https://docs.python.org/3/library/string.html)**: A built-in Python library to perform common string operations.
+- **[Gunicorn](https://gunicorn.org/)**: Python WSGI HTTP Server for UNIX systems(Used for Render Hosting. Ignore if running local instance)
