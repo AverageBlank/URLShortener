@@ -44,7 +44,7 @@ Ensure you have Docker installed on your system.
 
 3. **Run the container**
 
-- Start MongoDB & Flask server with one of the following command:
+- Start the MongoDB & Flask server with one of the following command:
   ```bash
   docker compose up
   ```
@@ -61,7 +61,7 @@ Ensure you have Docker installed on your system.
 
 ### Prerequisites
 
-Ensure have Python and MongoDB installed on your system.
+Ensure you have Python and MongoDB installed on your system.
 
 - **[Python](https://www.python.org/downloads/)**: Install Python.
 - **[MongoDB](https://docs.mongodb.com/manual/installation/)**: Follow MongoDB's installation guide.
