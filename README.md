@@ -48,7 +48,7 @@ Ensure you have Docker installed on your system.
   ```bash
   docker compose up
   ```
-  **_or (on Some Computers)_**
+  **_or if you encounter compatibility issues, use the following command:_**
   ```bash
   docker-compose up
   ```
