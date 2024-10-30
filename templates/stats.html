@@ -154,7 +154,7 @@
   
   async function deletecontent(button) {
     const shortenedUrl = button.dataset.msg;
-
+    if(confirm(`Are you sure you want to delete https://trim.lol/ ${shortenedUrl}`)){
     try {
       const response = await fetch('/delete', {
         method: 'POST',
@@ -175,6 +175,7 @@
       console.error(error);
       alert(error.message);
     }
+  }
   }
 
 
