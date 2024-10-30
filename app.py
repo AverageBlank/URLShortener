@@ -360,6 +360,26 @@ def stats():
         return response
 
 
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    userID = request.cookies.get("userID")
+    if usersColl.find_one({"UserID": userID}) is not None:
+        data = request.get_json()
+        shortened_url = data.get("shortened_url")
+        
+        if shortened_url:
+            URLsColl.delete_one({"ShortenedURL": shortened_url, "UserID": userID})
+            return redirect(url_for("stats"))  # Redirect to refresh list
+        return "Shortened URL not found.", 400  # Bad Request if no URL provided
+    else:
+        response = make_response(redirect("/"))
+        response.set_cookie("userID", "", expires=0)
+        return response
+
+
+
+
 @app.route("/<id>")
 @app.route("/<id>/")
 def url_redirection(id):
