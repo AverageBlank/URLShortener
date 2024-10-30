@@ -4,8 +4,6 @@ services:
   database:
     image: mongo
     restart: always
-    env_file:
-      - .env
 
   web:
     build: .
@@ -16,5 +14,7 @@ services:
       - database
     volumes:
       - ./:/URLShortner/
+    environment:
+      link: "mongodb://database:27017/"
     env_file:
       - .env
