@@ -1,37 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/static/images/favicon.svg" />
-    <title>{%block title %} {% endblock %} - trim.lol</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
-      * {
-        font-family: "Space Grotesk", sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/static/images/favicon.svg" />
+  <title>{% block title %} {% endblock %} - trim.lol</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
-      .errorTrue {
-        display: block !important;
-      }
-    </style>
-  </head>
+    * {
+      font-family: "Space Grotesk", sans-serif;
+    }
 
-  <body class="h-full w-full bg-zinc-950">
-    <div
-      class="flex justify-center items-center gap-3 md:gap-7 2xl:gap-10 flex-col w-full h-full bg-[url('static/images/bg-gradient.png')] bg-top text-white"
-    >
-      <a href="/"><img src="static/images/logo.svg" class="w-56 pb-3" /></a>
-      {% block content %} {% endblock %}
-    </div>
-    {% block script %} {% endblock %}
-  </body>
+    .errorTrue {
+      display: block !important;
+    }
+  </style>
+</head>
+
+<body class="h-full w-full bg-zinc-950 flex justify-center items-center">
+  <div
+    class="flex justify-center items-center gap-3 md:gap-7 2xl:gap-10 flex-col w-full h-full pt-10 sm:pt-20 bg-[url('static/images/bg-gradient.png')] bg-top bg-no-repeat bg-cover text-white">
+    <a href="/" class="pt-4 sm:pt-8"><img src="static/images/logo.svg" class="w-56 pb-3" /></a>
+  
+    {% block content %} {% endblock %}
+  </div>
+  {% block script %} {% endblock %}
+</body>
+
 </html>
