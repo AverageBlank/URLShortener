@@ -67,7 +67,6 @@ app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
 domain = "https://trim.lol/"
 hasUsedApp = False
 
-
 # ? Google OAuth Client ID, Secret, and Redirect URI
 google_client_id = environ.get("google_client_id")
 google_client_secret = environ.get("google_client_secret")

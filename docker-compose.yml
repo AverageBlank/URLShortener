@@ -4,8 +4,6 @@ services:
   database:
     image: mongo
     restart: always
-    env_file:
-      - .env
 
   web:
     build: .
@@ -16,5 +14,10 @@ services:
       - database
     volumes:
       - ./:/URLShortner/
+    environment:
+      link: "mongodb://database:27017/"
+      SECRET_KEY: "secret"
+      google_client_id: ""
+      google_client_secret: ""
     env_file:
       - .env
