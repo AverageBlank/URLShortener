@@ -2,13 +2,13 @@
 
 ## Overview
 
-URLShortener is a robust, user-friendly application designed to make managing and sharing long web addresses simpler. Built with an efficient backend powered by Flask, and secure database provided by MongoDB, the tool provides a smooth experience for shortening long URLs. It is built with a focus on practicality, usability, and reliability, helping users manage their URL links with ease.
+URLShortener is a robust, user-friendly application designed to make managing and sharing long web addresses simpler. Built with an efficient backend powered by Flask, and MongoDB, this tool provides a smooth experience for shortening URLs. It is built with a focus on practicality, usability, and reliability, helping users manage their links with ease.
 
 ## Live Preview
 
 https://github.com/AverageBlank/URLShortener/assets/112507212/f0203f19-f348-4267-953c-c99db8e5476d
 
-This website is currently hosted at [trim.lol](https://trim.lol). Hosted using [Vercel](https://vercel.com/)
+This website is currently hosted at [trim.lol](https://trim.lol) using [Vercel](https://vercel.com/)
 
 ## Contribution
 
