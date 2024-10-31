@@ -1,43 +1,50 @@
-{%extends 'base.html'%} {%block content %}
-<div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-6 m-3 rounded-xl flex items-center flex-col gap-4 bg-zinc-900 max-w-xl mx-auto">
   <div class="text-center">
-    <span class="hidden">{%block title%}trim.lol{%endblock%}</span>
-    <h1 class="text-3xl font-bold text-center">
-      A URL Shortener programmed in python
+    <span class="hidden">{% block title %}trim.lol{% endblock %}</span>
+    <h1 class="text-4xl font-bold text-center text-white">
+      A URL Shortener programmed in Python
     </h1>
-    <p class="text-sm mb-3 text-zinc-300">Built using Flask & MongoDB</p>
+    <p class="text-md mb-4 text-zinc-300">Built using Flask & MongoDB</p>
   </div>
-  <div class="flex gap-1 items-center flex-col md:flex-row">
+  <div class="flex gap-2 items-center flex-col md:flex-row">
     <a
       href="/signup"
-      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8"
-      >Sign Up</a
+      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg py-2 px-8 w-full sm:w-auto"
     >
+      Sign Up
+    </a>
     <a
       href="/login"
-      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8"
-      >Login</a
+      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg py-2 px-8 w-full sm:w-auto"
     >
+      Login
+    </a>
     <a
       href="/login/google"
-      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-8"
-      >Login with Google
+      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg py-2 px-8 w-full sm:w-auto"
+    >
+      Login with Google
     </a>
   </div>
 </div>
-<p class="text-blue-200 text-center px-2">
+<p class="text-blue-200 text-center px-2 mt-4">
   <a
     href="https://github.com/averageblank/urlshortener"
     class="underline"
     target="_blank"
-    >Github</a
-  >. Developed By
-  <a href="https://github.com/AvgBlank" target="_blank" class="underline"
-    >AvgBlank</a
   >
+    Github
+  </a>
+  . Developed By
+  <a href="https://github.com/AvgBlank" target="_blank" class="underline">
+    AvgBlank
+  </a>
   and
-  <a href="https://github.com/AalokeCode" target="_blank" class="underline"
-    >AalokeCode</a
-  >
+  <a href="https://github.com/AalokeCode" target="_blank" class="underline">
+    AalokeCode
+  </a>
 </p>
-{%endblock%}
+{% endblock %}
