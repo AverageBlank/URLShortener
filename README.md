@@ -1,14 +1,14 @@
-# URL Shortener
+# 🔗 trim.lol - URL Shortener
 
 ## Overview
 
-URLShortener is a robust, user-friendly application designed to make managing and sharing long web addresses simpler. Built with an efficient backend powered by Flask and MongoDB, the tool provides a smooth experience for creating short URLs. It is built with a focus on practicality, usability, and reliability, helping users manage their online links with ease.
+URLShortener is a robust, user-friendly application designed to make managing and sharing long web addresses simpler. Built with an efficient backend powered by Flask, and MongoDB, this tool provides a smooth experience for shortening URLs. It is built with a focus on practicality, usability, and reliability, helping users manage their links with ease.
 
 ## Live Preview
 
 https://github.com/AverageBlank/URLShortener/assets/112507212/f0203f19-f348-4267-953c-c99db8e5476d
 
-This website is currently hosted at [trim.lol](https://trim.lol).
+This website is currently hosted at [trim.lol](https://trim.lol) using [Vercel](https://vercel.com/)
 
 ## Contribution
 
@@ -61,7 +61,7 @@ Ensure you have Docker installed on your system.
 
 ### Prerequisites
 
-Ensure you have Python and MongoDB installed on your system.
+Ensure you have **Python** and **MongoDB** installed on your system.
 
 - **[Python](https://www.python.org/downloads/)**: Install Python.
 - **[MongoDB](https://docs.mongodb.com/manual/installation/)**: Follow MongoDB's installation guide.
@@ -110,7 +110,7 @@ Ensure you have Python and MongoDB installed on your system.
 - **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for styling the web pages.
 - **[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)**: Programming language used for client-side scripting.
 
-## Python Libraries Used
+### Python Libraries Used
 
 - **[Flask](https://flask.palletsprojects.com/)**: A lightweight WSGI web application framework in Python.
 - **[PyMongo](https://pymongo.readthedocs.io/)**: A Python distribution containing tools for working with MongoDB.
