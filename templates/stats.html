@@ -53,9 +53,9 @@
         {% for url in urls %}
         <tr class="odd:bg-zinc-900 even:bg-zinc-800 border-zinc-700">
           <td class="px-6 py-4 truncate max-w-96">{{url['OriginalURL']}}</td>
-          <td class="px-6 py-4 flex items-center">
+          <td class="px-6 py-4">
             <a href="https://trim.lol/{{url['ShortenedURL']}}" target="_blank" class="shortened-url block max-w-80 truncate"
-              >https://trim.lol/{{url['ShortenedURL']}}</span
+              >https://trim.lol/{{url['ShortenedURL']}}</a
             >
           </td>
           <td class="px-6 py-4 flex items-center gap-2">
