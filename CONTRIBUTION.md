@@ -6,6 +6,7 @@ Thank you for your interest in contributing to **URLShortener**! We welcome cont
 
 1. **Fork the repository**: Click on the "Fork" button at the top of this repository.
 2. **Clone your fork**: Clone the forked repository to your local environment.
+
 ```bash
 git clone https://github.com/your-username/URLShortener.git
 ```
@@ -114,6 +115,7 @@ Once you have completed your changes and thoroughly tested them, you can submit 
    git push origin feature/your-feature-name
    ```
 2. **Open a Pull Request**: Go to the original **URLShortener** repository on GitHub and open a pull request (PR) from your branch. Follow these steps when creating the PR:
+
    - **Title**: Use a descriptive title that summarizes your changes, such as "Fix redirect issue for invalid URLs" or "Add analytics tracking for URL clicks".
    - **Base and Compare Branches**: Set the base branch to `main` (or whichever branch is specified by the project) and the compare branch to the feature branch you created.
    - **Description**: Provide a detailed description in the PR. This should include:

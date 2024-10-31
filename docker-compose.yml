@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  database:
+    image: mongo
+    restart: always
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    volumes:
+      - ./:/URLShortner/
+    environment:
+      link: "mongodb://database:27017/"
+      SECRET_KEY: "secret"
+      google_client_id: ""
+      google_client_secret: ""
+    env_file:
+      - .env
