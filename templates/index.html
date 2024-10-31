@@ -1,3 +1,29 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="p-6 sm:p-10 md:p-14 lg:p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
+    <div class="text-center">
+        <span class="hidden">{% block title %}trim.lol{% endblock %}</span>
+        <h1 class="text-2xl sm:text-3xl font-bold text-center">A URL Shortener Programmed in Python</h1>
+        <p class="text-sm mb-3 text-zinc-300">Built using Flask & MongoDB</p>
+    </div>
+    <div class="flex gap-2 items-center flex-col md:flex-row">
+        <a href="/login"
+            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-6 sm:px-8">Log
+            in</a>
+        <a href="/signup"
+            class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-6 sm:px-8">Sign
+            Up</a>
+    </div>
+</div>
+<p class="text-blue-200 text-center px-2 mt-4">
+    <a href="https://github.com/averageblank/urlshortener" class="underline" target="_blank">Github</a>. Developed By
+    <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
+        href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+</p>
+{% endblock %}
+=======
 {%extends 'base.html'%} {%block content %}
 <div class="p-20 m-3 rounded-xl flex items-center flex-col gap-3 bg-zinc-900">
   <div class="text-center">

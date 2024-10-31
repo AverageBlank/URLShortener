@@ -1,3 +1,229 @@
+
+<header class="header-glass shadow-md mb-24 sticky top-0 z-50 transition-all duration-300 ease-in-out">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <img src="/static/images/favicon.svg" alt="Logo" class="h-8 w-auto">
+      <h1 class="text-gray-100 text-lg font-semibold">A URL Shortener</h1>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
+    <button id="hamburger" class="text-gray-200 md:hidden focus:outline-none">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
+
+    <!-- Navigation Links -->
+    <nav id="navMenu" class="hidden md:flex space-x-4">
+      <a href="/generateurl" class="text-white bg-blue-600 hover:bg-blue-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold">
+        Generate URL
+      </a>
+      <a href="/stats" class="text-white bg-blue-600 hover:bg-blue-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold">
+        View Stats
+      </a>
+      <a href="/logout" class="flex items-center text-white bg-red-600 hover:bg-red-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold space-x-2">
+        <i class="fas fa-arrow-right-from-bracket"></i>
+        <span>Log Out</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobileMenu" class="md:hidden flex flex-col space-y-2 mt-4 px-4 hidden mb-16">
+    <a href="/generateurl" class="text-white bg-blue-600 hover:bg-blue-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold">
+      Generate URL
+    </a>
+    <a href="/stats" class="text-white bg-blue-600 hover:bg-blue-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold">
+      View Stats
+    </a>
+    <a href="/logout" class="flex items-center text-white bg-red-600 hover:bg-red-500 transition ease-in-out duration-200 px-4 py-2 rounded-lg font-semibold space-x-2">
+      <i class="fas fa-arrow-right-from-bracket"></i>
+      <span>Log Out</span>
+    </a>
+  </nav>
+</header>
+
+
+
+{% extends 'base.html' %} {%block content %}
+<div class="p-6 md:p-10 lg:p-12 mx-3 rounded-xl w-full max-w-lg flex items-center flex-col gap-4 bg-zinc-900">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full">
+    <h1 class="text-2xl font-bold text-center md:text-left mb-3 md:mb-0">{% block title %}Generate URL{% endblock %}</h1>
+    <a href="/stats"
+      class="text-center bg-blue-700 hover:bg-blue-800 transition ease-in-out duration-200 text-white rounded-lg p-2 px-4 md:px-6">Check Statistics</a>
+  </div>
+  <hr class="w-full border-t-2 opacity-25 mb-3 border-zinc-400" />
+  <form method="post" action="" class="flex items-center flex-col w-full" id="generateURLForm">
+    <div class="mb-3 w-full">
+      <label class="block text-sm font-medium mb-1">Original URL</label>
+      <input type="text" name="long_url" id="url" placeholder="Enter URL to be shortened"
+        class="rounded-lg p-2 w-full bg-zinc-800" value="{{old_url}}" />
+      <p class="text-sm text-red-500 hidden {{error_url}}">{{error_url_statement}}</p>
+    </div>
+    <div class="mb-3 w-full">
+      <label class="block text-sm font-medium mb-1">Custom URL</label>
+      <input name="custom_url" type="text" id="custom_url" class="rounded-lg p-2 bg-zinc-800 w-full"
+        placeholder="Enter Custom URL (optional)" value="{{custom_url}}" />
+      <p class="text-sm text-red-500 hidden {{error_custom_url}}">{{error_custom_url_statement}}</p>
+    </div>
+    <button type="submit" value="submit" id="shorten"
+      class="text-center bg-blue-700 hover:bg-blue-800 cursor-pointer mb-5 w-full transition ease-in-out duration-200 text-white rounded-lg p-2">
+      Shorten URL 🔗
+    </button>
+    <hr class="border-t border-zinc-700 w-full p-2" />
+    <h1 class="text-xl mb-3 font-bold">Copy your custom URL</h1>
+    <div class="mb-3 rounded-lg w-full p-2 pl-4 bg-zinc-800 flex justify-between">
+      <input type="url" id="output" disabled placeholder="Returns your new shortened URL"
+        class="bg-transparent cursor-not-allowed w-3/4" value="{{new_url}}" />
+      <button type="button" onclick="return copyContent()" id="copyButton"
+        class="hover:bg-zinc-700 p-2 transition ease-in-out duration-200 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white" viewBox="0 0 256 256">
+          <path
+            d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z">
+          </path>
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="flex flex-col justify-center items-center mt-6">
+  <a href="/logout"
+    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000" viewBox="0 0 256 256">
+      <path
+        d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z">
+      </path>
+    </svg>
+    Logout
+  </a>
+  <p class="text-blue-200 text-center px-2">
+    <a href="https://github.com/averageblank/urlshortener" class="underline" target="_blank">Github</a>. Developed By
+    <a href="https://github.com/AverageBlank" target="_blank" class="underline">AverageBlank</a> and <a
+      href="https://github.com/AalokeCode" target="_blank" class="underline">AalokeCode</a>
+  </p>
+</div>
+
+
+
+{%endblock%} {%block script %}
+<footer class="bg-gray-900 text-white py-6">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center my-8">
+      <!-- Logo Section -->
+      <div class="flex items-center mb-4 md:mb-0 md:mt-0 mt-24 md:mt-0">
+        <img src="/static/images/favicon.svg" alt="Logo" class="h-10 w-auto mr-3" />
+        <span class="text-lg font-semibold">A URL Shortener</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 mb-4 md:mb-0">
+        <a href="/about" class="hover:text-blue-400 transition duration-200">About Us</a>
+        <a href="/privacy" class="hover:text-blue-400 transition duration-200">Privacy Policy</a>
+        <a href="/terms" class="hover:text-blue-400 transition duration-200">Terms of Service</a>
+      </nav>
+    </div>
+
+    <div class="border-t border-gray-700 mt-4 pt-4 text-center">
+      <p class="text-sm">&copy; 2024 Trim.lol. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-2">
+        <a href="#" class="text-blue-400 hover:underline">Twitter</a>
+        <a href="#" class="text-blue-400 hover:underline">Facebook</a>
+        <a href="#" class="text-blue-400 hover:underline">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+<script>
+
+  // JavaScript for hamburger menu functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // Toggle the 'hidden' class on the mobile menu
+  hamburger.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+
+    // Optional: Add an open/close animation
+    mobileMenu.classList.toggle("slide-in");
+  });
+});
+
+
+  // sleep function
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+    event.preventDefault();
+  }
+  let text = document.getElementById("output");
+  let button = document.getElementById("copyButton").innerHTML;
+
+  // copy button
+  const copyContent = async () => {
+    event.preventDefault();
+    try {
+      await navigator.clipboard.writeText(text.value);
+      copyButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>';
+      await sleep(2500);
+      copyButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 256 256"> <path d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"></path></svg>';
+      console.log("Content copied to clipboard");
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
+
+  // clear forms when refreshed
+  window.onload = function () {
+    document.getElementById("generateURLForm").reset();
+  };
+  if ("{{clearForms}}" == "True") {
+    document.getElementById("generateURLForm").reset();
+  }
+
+  // disable url shortening after you fill in the form
+  document.addEventListener("DOMContentLoaded", function (event) {
+    if ("{{completed}}" == "True") {
+      const button = document.getElementById("shorten");
+      const custom_url = document.getElementById("custom_url");
+      const long_url = document.getElementById("url");
+      button.disabled = true;
+      custom_url.disabled = true;
+      long_url.disabled = true;
+      button.classList.remove("bg-blue-700");
+      button.classList.remove("cursor-pointer");
+      button.classList.remove("hover:bg-blue-800");
+      button.classList.add("bg-gray-500");
+      button.classList.add("cursor-not-allowed");
+      custom_url.classList.add("cursor-not-allowed");
+      long_url.classList.add("cursor-not-allowed");
+    } else {
+      const button = document.getElementById("shorten");
+      const custom_url = document.getElementById("custom_url");
+      const long_url = document.getElementById("url");
+      button.disabled = false;
+      custom_url.disabled = false;
+      long_url.disabled = false;
+      button.classList.remove("bg-gray-500");
+      button.classlist.remove("cursor-not-allowed");
+      button.classList.add("bg-blue-700");
+      button.classList.add("cursor-pointer");
+      button.classList.add("hover:bg-blue-800");
+      custom_url.classList.remove("cursor-not-allowed");
+      long_url.classList.remove("cursor-not-allowed");
+    }
+  });
+</script>
+{%endblock%}
+=======
 {% extends 'base.html' %} {%block content %}
 <div
   class="p-8 px-10 md:p-10 2xl:p-16 m-3 rounded-xl w-11/12 md:3/4 lg:w-1/2 2xl:w-2/5 flex items-center flex-col gap-3 bg-zinc-900"
@@ -187,3 +413,4 @@
   });
 </script>
 {%endblock%}
+

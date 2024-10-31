@@ -8,8 +8,11 @@
   <title>{% block title %} {% endblock %} - trim.lol</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="../static/base.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM4MzPT4nVnI8qz1iRjPv2L5/8Gbt5c+G5dT1" crossorigin="anonymous">
+
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
@@ -20,6 +23,24 @@
     .errorTrue {
       display: block !important;
     }
+ 
+    /* Optional: Slide-in effect for mobile menu */
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+
   </style>
 </head>
 
@@ -31,4 +52,53 @@
   </div>
   {% block script %} {% endblock %}
 </body>
+
+<script>
+    // JavaScript for hamburger menu functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // Toggle the 'hidden' class on the mobile menu
+  hamburger.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+
+    // Optional: Add an open/close animation
+    mobileMenu.classList.toggle("slide-in");
+  });
+});
+  // Change header style on scroll
+  document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Check for saved user preference
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme) {
+    body.classList.add(currentTheme);
+  } else {
+    // Default to light mode
+    body.classList.add("light-mode");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    // Toggle between light and dark modes
+    if (body.classList.contains("light-mode")) {
+      body.classList.remove("light-mode");
+      body.classList.add("dark-mode");
+      themeToggle.innerHTML = '<i class="fas fa-moon text-2xl"></i>'; // Change icon to moon
+      localStorage.setItem("theme", "dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+      themeToggle.innerHTML = '<i class="fas fa-sun text-2xl"></i>'; // Change icon to sun
+      localStorage.setItem("theme", "light-mode");
+    }
+  });
+});
+
+
+</script>
+
+
 </html>
