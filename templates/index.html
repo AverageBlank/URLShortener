@@ -47,20 +47,4 @@
     AalokeCode
   </a>
 </p>
-<div class="flex justify-center mt-6">
-  <input type="text" id="url-input" class="rounded-lg p-2 border border-gray-300" placeholder="Enter URL here...">
-  <button class="ml-2 bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4" onclick="shortenUrl()">Shorten</button>
-</div>
-<div class="text-center mt-4" id="shortened-url-result"></div>
-
-<script>
-  function shortenUrl() {
-    const urlInput = document.getElementById('url-input').value;
-    if (urlInput) {
-      document.getElementById('shortened-url-result').innerText = `Shortened URL: ${urlInput.replace('http', 'short')}`;
-    } else {
-      alert('Please enter a URL to shorten!');
-    }
-  }
-</script>
 {% endblock %}
