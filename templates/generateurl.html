@@ -88,41 +88,38 @@
   </form>
 </div>
 <div class="flex flex-col justify-center items-center">
-  <div class="bg-blue-200 w-full p-4">
-    <a
-      href="/logout"
-      class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out hover:bg-blue-300"
+  <a
+    href="/logout"
+    class="mb-3 text-black flex gap-2 p-3 rounded-lg items-center duration-300 transition ease-in-out bg-blue-200 hover:bg-blue-300"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="#000"
+      viewBox="0 0 256 256"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="#000"
-        viewBox="0 0 256 256"
-      >
-        <path
-          d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z"
-        ></path>
-      </svg>
-      Logout
-    </a>
-    <p class="text-blue-800 text-center px-2">
-      <a
-        href="https://github.com/averageblank/urlshortener"
-        class="underline"
-        target="_blank"
-        >Github</a
-      >. Developed By
-      <a href="https://github.com/AvgBlank" target="_blank" class="underline"
-        >AvgBlank</a
-      >
-      and
-      <a href="https://github.com/AalokeCode" target="_blank" class="underline"
-        >AalokeCode</a
-      >
-    </p>
-  </div>
-  {%endblock%} {%block script %}
+      <path
+        d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40A8,8,0,0,0,176,88v32H112a8,8,0,0,0,0,16h64v32a8,8,0,0,0,13.66,5.66l40-40A8,8,0,0,0,229.66,122.34Z"
+      ></path></svg
+    >Logout</a
+  >
+  <p class="text-blue-200 text-center px-2">
+    <a
+      href="https://github.com/averageblank/urlshortener"
+      class="underline"
+      target="_blank"
+      >Github</a
+    >. Developed By
+    <a href="https://github.com/AvgBlank" target="_blank" class="underline"
+      >AvgBlank</a
+    >
+    and
+    <a href="https://github.com/AalokeCode" target="_blank" class="underline"
+      >AalokeCode</a
+    >
+  </p>
+</div>
+{%endblock%} {%block script %}
 <script>
   // sleep function
   function sleep(ms) {
