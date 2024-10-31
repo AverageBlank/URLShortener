@@ -74,6 +74,19 @@
                 ></path>
               </svg>
             </button>
+
+            <button class="text-white bg-red-600 flex items-center gap-2 hover:bg-red-700 p-2 rounded-lg delete-button" 
+              onclick="deletecontent(this)" 
+              data-msg="{{url['ShortenedURL']}}"
+              >Delete
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="fill-white" viewBox="0 0 256 256">
+                <path
+                  d="M216,72H184V56a16,16,0,0,0-16-16H88A16,16,0,0,0,72,56V72H40a8,8,0,0,0,0,16H56v136a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16V88h16a8,8,0,0,0,0-16ZM88,56h80V72H88ZM184,224H72V88H184Z">
+                </path>
+                </svg>
+            </button>
+
+
           </td>
           <td class="px-6 py-4">{{url['Timestamp']}}</td>
           <td class="px-6 py-4">{{url['Clicks']}}</td>
@@ -137,5 +150,36 @@
       console.error("Failed to copy: ", err);
     }
   };
+
+  
+  async function deletecontent(button) {
+    const shortenedUrl = button.dataset.msg;
+    if(confirm(`Are you sure you want to delete https://trim.lol/ ${shortenedUrl}`)){
+    try {
+      const response = await fetch('/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ shortened_url: shortenedUrl })
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message || 'An error occurred while deleting the URL.');
+      }
+
+      // Redirect to stats page on success
+      window.location.href = "{{ url_for('stats') }}";
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  }
+  }
+
+
+
+
 </script>
 {%endblock%}
