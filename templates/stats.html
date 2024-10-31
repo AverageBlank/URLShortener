@@ -44,6 +44,7 @@
         <tr>
           <th scope="col" class="px-6 py-3">Original URL</th>
           <th scope="col" class="px-6 py-3">Shortened URL</th>
+          <th scope="col" class="px-6 py-3">Actions</th>
           <th scope="col" class="px-6 py-3">Date & Time Created</th>
           <th scope="col" class="px-6 py-3">Clicks</th>
         </tr>
@@ -52,10 +53,12 @@
         {% for url in urls %}
         <tr class="odd:bg-zinc-900 even:bg-zinc-800 border-zinc-700">
           <td class="px-6 py-4 truncate max-w-96">{{url['OriginalURL']}}</td>
-          <td class="px-6 py-4 flex items-center gap-2">
-            <span class="shortened-url block max-w-80 truncate"
+          <td class="px-6 py-4 flex items-center">
+            <a href="https://trim.lol/{{url['ShortenedURL']}}" target="_blank" class="shortened-url block max-w-80 truncate"
               >https://trim.lol/{{url['ShortenedURL']}}</span
             >
+          </td>
+          <td class="px-6 py-4 flex items-center gap-2">
             <button
               class="copy-button text-white bg-blue-700 flex items-center gap-2 hover:bg-blue-800 p-2 rounded-lg"
               onclick="copyContent(this)"
@@ -85,8 +88,6 @@
                 </path>
                 </svg>
             </button>
-
-
           </td>
           <td class="px-6 py-4">{{url['Timestamp']}}</td>
           <td class="px-6 py-4">{{url['Clicks']}}</td>
