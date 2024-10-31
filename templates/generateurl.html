@@ -56,16 +56,14 @@
     <hr class="border-top border-zinc-700 w-full p-2" />
     <h1 class="text-xl mb-3 font-bold">Copy your custom URL</h1>
     <div
-      class="mb-3 rounded-lg w-11/12 xl:w-3/4 p-2 pl-4 bg-zinc-800 flex justify-between"
+      class="mb-3 rounded-lg w-11/12 xl:w-3/4 p-2 pl-4 bg-zinc-800 flex justify-between items-center"
     >
-      <input
-        type="url"
+      <a
+        href="{{new_url}}"
         id="output"
-        disabled
-        placeholder="Returns your new shortened URL"
-        class="bg-transparent cursor-not-allowed w-3/4"
-        value="{{new_url}}"
-      />
+        class="w-3/4 text-gray-400"
+        >{{new_url}}
+      </a>
       <button
         type="button"
         onclick="return copyContent()"

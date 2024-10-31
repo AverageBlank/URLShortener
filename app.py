@@ -225,12 +225,14 @@ def generateurl():
                 if customURL == "":
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         error_url="errorTrue",
                         error_url_statement="Invalid URL. Please try again.",
                     )
                 else:
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         error_url="errorTrue",
                         custom_url=customURL,
                         error_url_statement="Invalid URL. Please try again.",
@@ -239,12 +241,14 @@ def generateurl():
                 if customURL == "":
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         error_url="errorTrue",
                         error_url_statement="URL cannot be shortened. Please try again.",
                     )
                 else:
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         error_url="errorTrue",
                         custom_url=customURL,
                         error_url_statement="URL cannot be shortened. Please try again.",
@@ -256,6 +260,7 @@ def generateurl():
             if url == "":
                 return render_template(
                     "generateurl.html",
+                    new_url="Returns your new shortened URL",
                     error_url="errorTrue",
                     error_url_statement="Please enter a URL and try again.",
                 )
@@ -266,6 +271,7 @@ def generateurl():
                 if customURL in existingURLs:
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         old_url=url,
                         error_custom_url="errorTrue",
                         error_custom_url_statement="Custom URL already claimed. Please try again.",
@@ -278,6 +284,7 @@ def generateurl():
                 ):
                     return render_template(
                         "generateurl.html",
+                        new_url="Returns your new shortened URL",
                         old_url=url,
                         error_custom_url="errorTrue",
                         error_custom_url_statement="Invalid custom URL. Please try again.",
@@ -339,7 +346,11 @@ def generateurl():
             return redirect(url_for("generateurl"))
         else:
             hasUsedApp = False
-            return render_template("generateurl.html", clearForms="True")
+            return render_template(
+                "generateurl.html",
+                clearForms="True",
+                new_url="Returns your new shortened URL",
+            )
     else:
         response = make_response(redirect("/"))
         if request.cookies.get("userID") != None:
@@ -359,14 +370,13 @@ def stats():
         return response
 
 
-
 @app.route("/delete", methods=["POST"])
 def delete():
     userID = request.cookies.get("userID")
     if usersColl.find_one({"UserID": userID}) is not None:
         data = request.get_json()
         shortened_url = data.get("shortened_url")
-        
+
         if shortened_url:
             URLsColl.delete_one({"ShortenedURL": shortened_url, "UserID": userID})
             return redirect(url_for("stats"))  # Redirect to refresh list
@@ -375,8 +385,6 @@ def delete():
         response = make_response(redirect("/"))
         response.set_cookie("userID", "", expires=0)
         return response
-
-
 
 
 @app.route("/<id>")
