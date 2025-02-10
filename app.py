@@ -28,7 +28,7 @@ from flask import (
 
 
 # ? MongoDB --> For storing URL databases
-from pymongo import MongoClient
+from pymongo import MongoClient, UpdateOne
 
 # ? DateTime --> For getting current date
 from datetime import datetime, timedelta
@@ -96,7 +96,7 @@ URLsColl = db["urls"]
 usersColl = db["users"]
 
 # ? Create indexes (if needed)
-URLsColl.create_index("ID", unique=True)
+URLsColl.create_index("ID")
 URLsColl.create_index("Timestamp")
 URLsColl.create_index("OriginalURL")
 URLsColl.create_index("ShortenedURL", unique=True)
@@ -205,7 +205,7 @@ def authorize_google():
 @app.route("/", methods=["GET", "POST"])
 def home():
     if usersColl.find_one({"UserID": request.cookies.get("userID")}) != None:
-        return redirect("/generateurl")
+        return redirect("/stats")
     else:
         response = make_response(render_template("index.html"))
         if request.cookies.get("userID") != None:
@@ -257,6 +257,8 @@ def generateurl():
             id = URLsColl.count_documents({}) + 1
             time = now.strftime("%d/%m/%Y %H:%M:%S")
             userID = request.cookies.get("userID")
+            if url != "" and "http" not in url:
+                url = "http://" + url
             if url == "":
                 return render_template(
                     "generateurl.html",
@@ -377,10 +379,28 @@ def delete():
         data = request.get_json()
         shortened_url = data.get("shortened_url")
 
-        if shortened_url:
-            URLsColl.delete_one({"ShortenedURL": shortened_url, "UserID": userID})
-            return redirect(url_for("stats"))  # Redirect to refresh list
-        return "Shortened URL not found.", 400  # Bad Request if no URL provided
+        if not shortened_url:
+            return "Shortened URL not found.", 400  # Bad Request if no URL provided
+
+        URLsColl.delete_one({"ShortenedURL": shortened_url, "UserID": userID})
+
+        # Fetch all documents excluding "_id"
+        urls = list(URLsColl.find({}, {"_id": 0}))
+        length = len(urls)
+        # Bulk update with new IDs
+        update_operations = [
+            UpdateOne(
+                {
+                    "ShortenedURL": urls[i - 1]["ShortenedURL"],
+                    "UserID": urls[i - 1]["UserID"],
+                },
+                {"$set": {"ID": i}},
+            )
+            for i in range(length, 0, -1)
+        ]
+        if update_operations:
+            URLsColl.bulk_write(update_operations)
+        return redirect(url_for("stats"))
     else:
         response = make_response(redirect("/"))
         response.set_cookie("userID", "", expires=0)
